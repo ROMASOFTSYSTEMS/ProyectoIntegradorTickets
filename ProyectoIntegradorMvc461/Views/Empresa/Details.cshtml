@@ -1,0 +1,47 @@
+﻿@model ProyectoIntegradorMvc461.Models.Empresa
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.id_empresa)*@
+            <label class="control-label col-md-2">Id</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_empresa)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.t_empresa)*@
+            <label class="control-label col-md-2">Descripcion</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_empresa)
+
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.f_estado)*@
+            <label class="control-label col-md-2">Estado</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_empresa }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Sistema>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_sistema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.t_sistema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.f_estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_sistema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.t_sistema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_sistema }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.id_sistema }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_sistema })
+        </td>
+    </tr>
+}
+
+</table>

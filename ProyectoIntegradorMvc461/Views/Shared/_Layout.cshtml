@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Control de Tickets</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*Nuevo Codigo Inicio*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .mynav_navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+            .mynav_navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+        .mynav_dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .mynav_dropdown .mynav_dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+            .mynav_navbar a:hover, .mynav_dropdown:hover .mynav_dropbtn {
+                background-color: red;
+            }
+        .mynav_dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+            .mynav_dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+                .mynav_dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .mynav_dropdown:hover .mynav_dropdown-content {
+            display: block;
+        }
+    </style>
+    @*Nuevo Codigo Fin*@
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Control de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            @*Este es el Menu que se reemplaza*@
+            @*<div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                </ul>
+            </div>*@
+            @*Nuevo Menu Inicio*@
+        <div class="mynav_navbar">
+            @*<a href="#home">Home</a>*@
+            @Html.ActionLink("Inicio", "Index", "Home")
+            @*<a href="#news">News</a>*@
+            <div class="mynav_dropdown">
+                <button class="mynav_dropbtn">Mantenimiento<i class="fa fa-caret-down"></i></button>
+                <div class="mynav_dropdown-content">
+                    @*<a asp-area="" asp-controller="Empresas" asp-action="Index">Empresas</a>
+                <a asp-area="" asp-controller="Home" asp-action="Sistema">Sistema</a>
+                <a asp-area="" asp-controller="Home" asp-action="Modulo">Modulo</a>*@
+                    @Html.ActionLink("Empresas", "Index", "Empresa")
+                    @Html.ActionLink("Sistema", "Index", "Sistema")
+                    @Html.ActionLink("Modulo", "Index", "Modulo")
+                </div>
+            </div>
+            <div class="mynav_dropdown">
+                <button class="mynav_dropbtn">Seguridad<i class="fa fa-caret-down"></i></button>
+                <div class="mynav_dropdown-content">
+                    @Html.ActionLink("Usuarios", "Index", "Usuario")
+                    @Html.ActionLink("Perfil de Usuario", "Index", "Perfil")
+                    @Html.ActionLink("Usuario/Empresa", "Index", "UsuarioEmpresa")
+                    @Html.ActionLink("Usuario/Perfil", "Index", "UsuarioPerfil")
+                </div>
+            </div>
+            <div class="mynav_dropdown">
+                <button class="mynav_dropbtn">Tickets<i class="fa fa-caret-down"></i></button>
+                <div class="mynav_dropdown-content">
+                    @Html.ActionLink("Estado de Ticket", "Index", "EstadoTicket")
+                    @Html.ActionLink("Tipo de Ticket", "Index", "TipoTicket")
+                    @Html.ActionLink("Registro de Ticket", "Index", "RegistroTicket")
+                </div>
+            </div>
+            <div class="mynav_dropdown">
+                <button class="mynav_dropbtn">Acerca De<i class="fa fa-caret-down"></i></button>
+                <div class="mynav_dropdown-content">
+                    @Html.ActionLink("Acerca de", "About", "Home")
+                    @Html.ActionLink("Contacto", "Contact", "Home")
+                </div>
+            </div>
+            @Html.ActionLink("Cerrar Sesion", "Login", "Acceso")
+            <!--<div class="mynav_dropdown">
+        <button class="mynav_dropbtn">
+            MenuX-->
+            @*Dropdown*@
+            <!--<i class="fa fa-caret-down"></i>
+        </button>
+        <div class="mynav_dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+            @Html.ActionLink("Acerca de", "About", "Home")
+            @Html.ActionLink("Contacto", "Contact", "Home")
+        </div>
+    </div>-->
+        </div>
+            @*Nuevo Menu Fin*@ 
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Control de Tickets</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
