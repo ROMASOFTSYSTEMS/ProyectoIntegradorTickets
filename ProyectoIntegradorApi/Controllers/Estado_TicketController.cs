@@ -11,30 +11,30 @@ namespace ProyectoIntegradorApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class Estado_TicketController : ControllerBase
     {
         private readonly ApplicationDbContext _DataBase;
-        public EmpresaController(ApplicationDbContext db)
+        public Estado_TicketController(ApplicationDbContext db)
         {
             _DataBase = db;
         }
 
         // METODOS EN GENERAL 
         #region GET TODOS
-        // GET: api/Empresa
+        // GET: api/Estado_Ticket
         [HttpGet]
-        public async Task<IActionResult> GetallEmpresas()
+        public async Task<IActionResult> GetallEstado_Tickets()
         {
-            var lista = await _DataBase.Empresa.OrderBy(c => c.t_empresa).ToListAsync();
+            var lista = await _DataBase.Estado_Ticket.OrderBy(c => c.t_estado_ticket).ToListAsync();
             return Ok(lista);
         }
         #endregion
         #region GET ESPECIFICO
-        // GET: api/Empresa/5
+        // GET: api/Estado_Ticket/5
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetEmpresa(int id)
+        public async Task<IActionResult> GetEstado_Ticket(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Estado_Ticket.FirstOrDefaultAsync(c => c.id_estado_ticket == id);
             if (obj == null)
             {
                 return NotFound();
@@ -43,9 +43,9 @@ namespace ProyectoIntegradorApi.Controllers
         }
         #endregion
         #region POST NUEVO
-        // POST: api/Empresa
+        // POST: api/Estado_Ticket
         [HttpPost]
-        public async Task<IActionResult> CrearEmpresa([FromBody] Empresa entidad)
+        public async Task<IActionResult> CrearEstado_Ticket([FromBody] Estado_Ticket entidad)
         {
             if (entidad == null)
             {
@@ -57,40 +57,40 @@ namespace ProyectoIntegradorApi.Controllers
             }
             await _DataBase.AddAsync(entidad);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa creada");
+            return Ok("Estado_Ticket creado");
         }
 
         #endregion
         #region PUT ACTUALIZA REGISTRO - MODIFICA UN REGISTRO ESPECIFICO
-        // PUT: api/Empresa
+        // PUT: api/Estado_Ticket
         [HttpPut()]     // "{id:int}"
-        public async Task<Empresa> EditarEmpresa(Empresa entidad)       // int id_empresa
+        public async Task<Estado_Ticket> EditarEstado_Ticket(Estado_Ticket entidad)
         {
-            var result = await _DataBase.Empresa.FirstOrDefaultAsync(e => e.id_empresa == entidad.id_empresa);
+            var result = await _DataBase.Estado_Ticket.FirstOrDefaultAsync(e => e.id_estado_ticket == entidad.id_estado_ticket);
 
             if (result != null)
             {
-                result.t_empresa = entidad.t_empresa;
+                result.t_estado_ticket = entidad.t_estado_ticket;
                 result.f_estado = entidad.f_estado;
                 await _DataBase.SaveChangesAsync();
                 return result;
             }
-            //return Ok("Empresa actualizada");
+            //return Ok("Estado_Ticket actualizada");
             return null;
         }
         #endregion
-        #region ELIMINAR REGISTRO
+        #region DELETE ELIMINAR REGISTRO
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarEmpresa(int id)
+        public async Task<IActionResult> EliminarEstado_Ticket(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Estado_Ticket.FirstOrDefaultAsync(c => c.id_estado_ticket == id);
             if (obj == null)
             {
-                return BadRequest("Empresa no encontrada");
+                return BadRequest("Estado_Ticket no encontrado");
             }
             _DataBase.Remove(obj);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa eliminada");
+            return Ok("Estado_Ticket eliminado");
         }
         #endregion
     }

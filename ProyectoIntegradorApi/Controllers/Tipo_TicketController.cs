@@ -11,30 +11,30 @@ namespace ProyectoIntegradorApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class Tipo_TicketController : ControllerBase
     {
         private readonly ApplicationDbContext _DataBase;
-        public EmpresaController(ApplicationDbContext db)
+        public Tipo_TicketController(ApplicationDbContext db)
         {
             _DataBase = db;
         }
 
         // METODOS EN GENERAL 
         #region GET TODOS
-        // GET: api/Empresa
+        // GET: api/Tipo_Ticket
         [HttpGet]
-        public async Task<IActionResult> GetallEmpresas()
+        public async Task<IActionResult> GetallTipo_Tickets()
         {
-            var lista = await _DataBase.Empresa.OrderBy(c => c.t_empresa).ToListAsync();
+            var lista = await _DataBase.Tipo_Ticket.OrderBy(c => c.t_tipo_ticket).ToListAsync();
             return Ok(lista);
         }
         #endregion
         #region GET ESPECIFICO
-        // GET: api/Empresa/5
+        // GET: api/Tipo_Ticket/5
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetEmpresa(int id)
+        public async Task<IActionResult> GetTipo_Ticket(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Tipo_Ticket.FirstOrDefaultAsync(c => c.id_tipo_ticket == id);
             if (obj == null)
             {
                 return NotFound();
@@ -43,9 +43,9 @@ namespace ProyectoIntegradorApi.Controllers
         }
         #endregion
         #region POST NUEVO
-        // POST: api/Empresa
+        // POST: api/Tipo_Ticket
         [HttpPost]
-        public async Task<IActionResult> CrearEmpresa([FromBody] Empresa entidad)
+        public async Task<IActionResult> CrearTipo_Ticket([FromBody] Tipo_Ticket entidad)
         {
             if (entidad == null)
             {
@@ -57,40 +57,40 @@ namespace ProyectoIntegradorApi.Controllers
             }
             await _DataBase.AddAsync(entidad);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa creada");
+            return Ok("Tipo_Ticket creado");
         }
 
         #endregion
         #region PUT ACTUALIZA REGISTRO - MODIFICA UN REGISTRO ESPECIFICO
-        // PUT: api/Empresa
+        // PUT: api/Tipo_Ticket
         [HttpPut()]     // "{id:int}"
-        public async Task<Empresa> EditarEmpresa(Empresa entidad)       // int id_empresa
+        public async Task<Tipo_Ticket> EditarTipo_Ticket(Tipo_Ticket entidad)
         {
-            var result = await _DataBase.Empresa.FirstOrDefaultAsync(e => e.id_empresa == entidad.id_empresa);
+            var result = await _DataBase.Tipo_Ticket.FirstOrDefaultAsync(e => e.id_tipo_ticket == entidad.id_tipo_ticket);
 
             if (result != null)
             {
-                result.t_empresa = entidad.t_empresa;
+                result.t_tipo_ticket = entidad.t_tipo_ticket;
                 result.f_estado = entidad.f_estado;
                 await _DataBase.SaveChangesAsync();
                 return result;
             }
-            //return Ok("Empresa actualizada");
+            //return Ok("Tipo_Ticket actualizada");
             return null;
         }
         #endregion
-        #region ELIMINAR REGISTRO
+        #region DELETE ELIMINAR REGISTRO
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarEmpresa(int id)
+        public async Task<IActionResult> EliminarTipo_Ticket(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Tipo_Ticket.FirstOrDefaultAsync(c => c.id_tipo_ticket == id);
             if (obj == null)
             {
-                return BadRequest("Empresa no encontrada");
+                return BadRequest("Tipo_Ticket no encontrado");
             }
             _DataBase.Remove(obj);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa eliminada");
+            return Ok("Tipo_Ticket eliminado");
         }
         #endregion
     }

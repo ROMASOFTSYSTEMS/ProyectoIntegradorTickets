@@ -13,33 +13,63 @@ namespace ProyectoIntegradorMvc461.Filters
     public class AutorizaUsuario:AuthorizeAttribute
     {
         Perfil_OpcionModel model;
+        private bool lAcceso;
         private Usuario oUsuario;
+        private List<Perfil_Opcion> oLstOpciones;
         //private _Database 
-        private int IdOperacion;
-        public AutorizaUsuario(int IdOperacion=0)
+        private int IdOpcion;
+        public AutorizaUsuario(int IdOpcion = 0)
         {
-            
-            this.IdOperacion = IdOperacion;
+            this.lAcceso = false;
+            this.IdOpcion = IdOpcion;
         }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             this.model = new Perfil_OpcionModel();
 
-            String nombreOperacion = "";
-            String nombreModulo = "";
+            //String nombreOpcion = "";
+            //String nombreModulo = "";
             try
             {
                 oUsuario = (Usuario)HttpContext.Current.Session["User"];
-                var xx = PerfilOpcion(1, 2);
-                Task<Perfil_Opcion> Obj = PerfilOpcion(1, 2);
-
-                //Perfil_Opcion Obj = (Perfil_Opcion)xx;      // model.GetPerfil_OpcionPerfilOpcion(1, 2);
+                oLstOpciones = (List<Perfil_Opcion>)HttpContext.Current.Session["Opciones"];
+                if (oLstOpciones != null)
+                {
+                    if (oLstOpciones.Count() < 1)
+                    {
+                        //filterContext.Result = new RedirectResult("/Error/OpcionNoAutorizada?opcion=" + nombreOpcion);
+                        filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                    }
+                    else
+                    {
+                        this.lAcceso = false;
+                        // Aqui debo Buscar la Opcion recibida
+                        for (int i = 0; i < oLstOpciones.Count(); i++)
+                        {
+                            if(oLstOpciones[i].id_opcion.Equals(this.IdOpcion) && oLstOpciones[i].f_estado.Equals(1))
+                            {
+                                this.lAcceso = true;
+                                break;
+                            }
+                        }
+                        if (!this.lAcceso)
+                        {
+                            //filterContext.Result = new RedirectResult("/Error/OpcionNoAutorizada?opcion=" + nombreOpcion);
+                            filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                        }
+                    }
+                }
+                else {
+                    //filterContext.Result = new RedirectResult("/Error/OpcionNoAutorizada?opcion=" + nombreOpcion);
+                    filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                }
             }
             catch (Exception)
             {
-
-                throw;
+                filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                //filterContext.Result = new RedirectResult("/Error/OpcionNoAutorizada?opcion=" + nombreOpcion);
+                //throw;
             }
 
         }
@@ -49,7 +79,7 @@ namespace ProyectoIntegradorMvc461.Filters
             try
             {
                 // Aqui se pone la logica para extraer el Usuario y Clave
-                Perfil_Opcion Obj = await model.GetPerfil_OpcionPerfilOpcion(1, 2);
+                Perfil_Opcion Obj = await model.GetPerfil_Opcion(perfil, opcion);
                 if (Obj == null)
                 {
                     return null;
@@ -61,5 +91,24 @@ namespace ProyectoIntegradorMvc461.Filters
                 return null;
             }
         }
+
+        public async Task<List<Perfil_Opcion>> PerfilOpciones(int perfil)
+        {
+            try
+            {
+                // Aqui se pone la logica para extraer el Usuario y Clave
+                List<Perfil_Opcion> cList = await model.GetPerfil_Opciones(perfil);
+                if (cList == null)
+                {
+                    return null;
+                }
+                return cList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

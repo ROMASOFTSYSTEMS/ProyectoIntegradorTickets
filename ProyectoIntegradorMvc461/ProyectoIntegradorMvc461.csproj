@@ -115,9 +115,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\AutorizaUsuario.cs" />
     <Compile Include="Filters\VerificaSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -127,12 +130,16 @@
     <Compile Include="Models\EmpresaModel.cs" />
     <Compile Include="Models\Modulo.cs" />
     <Compile Include="Models\ModuloModel.cs" />
+    <Compile Include="Models\Perfil.cs" />
+    <Compile Include="Models\PerfilModel.cs" />
     <Compile Include="Models\Perfil_Opcion.cs" />
     <Compile Include="Models\Perfil_OpcionModel.cs" />
     <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\SistemaModel.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Models\Usuario_Perfil.cs" />
+    <Compile Include="Models\Usuario_PerfilModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +198,18 @@
     <Content Include="Views\Sistema\Crear.cshtml" />
     <Content Include="Views\Sistema\Editar.cshtml" />
     <Content Include="Views\Modulo\Index.cshtml" />
+    <Content Include="Views\Error\UnauthorizedOption.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\Detalle.cshtml" />
+    <Content Include="Views\Perfil\Crear.cshtml" />
+    <Content Include="Views\Perfil\Editar.cshtml" />
+    <Content Include="Views\Modulo\Detalle.cshtml" />
+    <Content Include="Views\Modulo\Crear.cshtml" />
+    <Content Include="Views\Modulo\Editar.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Detalle.cshtml" />
+    <Content Include="Views\Usuario\Crear.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

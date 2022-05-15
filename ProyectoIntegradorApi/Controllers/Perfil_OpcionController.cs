@@ -31,21 +31,19 @@ namespace ProyectoIntegradorApi.Controllers
         }
         #endregion
         #region GET ESPECIFICO 
-        // TRAER UN REGISTRO ESPECIFICO
-        // GET: api/<Perfil_OpcionController>/5
-        //[HttpGet("{id_usuario:int}")]
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetPerfil_Opcion(int id)
+        [HttpGet("{id_perfil:int}")]
+        public async Task<IActionResult> GetPerfil_Opciones(int id_perfil)
         {
-            var obj = await _DataBase.Perfil_Opcion.FirstOrDefaultAsync(c => c.id_perfil_opcion == id);
-            if (obj == null)
+            var lista = await _DataBase.Perfil_Opcion.Where(c => c.id_perfil == id_perfil).OrderBy(c => c.id_perfil_opcion).ToListAsync();
+
+            //var obj = await _DataBase.Perfil_Opcion.Fi .FirstOrDefaultAsync(c => c.id_perfil == id_perfil);
+            if (lista == null)
             {
                 return NotFound();
             }
-            return Ok(obj);
+            return Ok(lista);
         }
         #endregion
-
         #region GET ESPECIFICO CON DOS PARAMETROS
         // TRAER UN REGISTRO ESPECIFICO
         // GET: api/<Perfil_OpcionController>/5
@@ -57,9 +55,13 @@ namespace ProyectoIntegradorApi.Controllers
         [HttpGet("{id_perfil:int}/{id_opcion:int}")]
         public async Task<IActionResult> GetPerfil_OpcionPerfil_Opcion(int id_perfil, int id_opcion)
         {
-            //DbSet<Perfil_Opcion> data = _DataBase.Perfil_Opcion;
-            //var obj = (Perfil_Opcion)_DataBase.Perfil_Opcion.Where(c => c.id_perfil == id_perfil && c.id_opcion == id_opcion).First();
-            var obj = _DataBase.Perfil_Opcion.Where(c => c.id_perfil == id_perfil && c.id_opcion == id_opcion).First();
+            //var obj = _DataBase.Perfil_Opcion.Where(c => c.id_perfil == id_perfil && c.id_opcion == id_opcion).First();
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            //return Ok(obj);
+            var obj = await _DataBase.Perfil_Opcion.FirstOrDefaultAsync(c => c.id_perfil == id_perfil && c.id_opcion == id_opcion);
             if (obj == null)
             {
                 return NotFound();
@@ -67,8 +69,6 @@ namespace ProyectoIntegradorApi.Controllers
             return Ok(obj);
         }
         #endregion
-
-
         #region POST NUEVO
         // CREA UN REGISTRO NUEVO
         // POST: api/<Perfil_OpcionController>

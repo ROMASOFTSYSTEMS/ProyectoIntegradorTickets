@@ -79,7 +79,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Control de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Contol de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink(Session["Username"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             @*Este es el Menu que se reemplaza*@
             @*<div class="navbar-collapse collapse">

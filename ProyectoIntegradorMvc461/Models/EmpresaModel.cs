@@ -15,8 +15,6 @@ namespace ProyectoIntegradorMvc461.Models
         MediaTypeWithQualityHeaderValue mediaheader;
         public EmpresaModel()
         {
-            //this.UriApi = "http://localhost:50809/"; // Local API
-            //this.UriApi = "http://agendaexampleapi.azurewebsites.net/"; // Azure API
             this.UriApi = "https://localhost:44396/"; // Local API
             this.mediaheader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
         }
@@ -88,7 +86,5 @@ namespace ProyectoIntegradorMvc461.Models
                 await client.DeleteAsync(peticion);
             }
         }
-
-
     }
 }

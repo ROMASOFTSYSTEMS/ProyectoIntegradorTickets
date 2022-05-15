@@ -59,24 +59,6 @@ namespace ProyectoIntegradorApi.Controllers
         {
             DbSet<Usuario> data = _DataBase.Usuario;
             var obj = (Usuario)_DataBase.Usuario.Where(c => c.c_usuario == c_usuario && c.t_password == t_password).First();
-
-            //if(c_usuario!==null && t_password != null)
-            //{
-
-            //}
-
-            //data = data.Where(p => p.c_usuario == c_usuario.GetV
-
-            //&& p.t_password == t_password.Get);
-
-            //    .Get .Get
-
-
-            //p .Id == partnersSearch.SearchById.GetValueOrDefault());
-
-            ////var obj = await _DataBase.Usuario.Where(c => c.c_usuario == c_usuario && c.t_password == t_password);       //.ToListAsync()
-            //var obj = (Usuario)_DataBase.Usuario.Where(c => c.c_usuario == c_usuario && c.t_password == t_password).AsQueryable();
-
             if (obj == null)
             {
                 return NotFound();

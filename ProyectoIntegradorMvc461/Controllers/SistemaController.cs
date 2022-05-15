@@ -6,6 +6,7 @@ using System.Web.Mvc;
 //Usings
 using System.Threading.Tasks;
 using ProyectoIntegradorMvc461.Models;
+using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
@@ -19,6 +20,7 @@ namespace ProyectoIntegradorMvc461.Controllers
 
         // GET: Sistemas
         [AsyncTimeout(1000)]
+        [AutorizaUsuario(IdOpcion: 3)]   // Filtro 
         public async Task<ActionResult> Index()
         {
             List<Sistema> cList = await model.GetSistema();

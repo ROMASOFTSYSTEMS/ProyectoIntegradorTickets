@@ -22,7 +22,7 @@ namespace ProyectoIntegradorApi.Controllers
         // METODOS EN GENERAL 
         #region GET TODOS
         // TRAER TODOS LOS REGISTROS
-        // GET: api/<UsuarioController>
+        // GET: api/Sistema
         [HttpGet]
         public async Task<IActionResult> GetallSistemas()
         {
@@ -32,7 +32,7 @@ namespace ProyectoIntegradorApi.Controllers
         #endregion
         #region GET ESPECIFICO
         // TRAER UN REGISTRO ESPECIFICO
-        // GET: api/<UsuarioController>/5
+        // GET: api/Sistema/5
         //[HttpGet("{id_empresa:int}")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetSistema(int id)
@@ -47,7 +47,7 @@ namespace ProyectoIntegradorApi.Controllers
         #endregion
         #region POST NUEVO
         // CREA UN REGISTRO NUEVO
-        // POST: api/<UsuarioController>
+        // POST: api/Sistema
         [HttpPost]
         public async Task<IActionResult> CrearSistema([FromBody] Sistema entidad)
         {
@@ -67,7 +67,7 @@ namespace ProyectoIntegradorApi.Controllers
         #endregion
         #region PUT ACTUALIZA REGISTRO
         // MODIFICA UN REGISTRO ESPECIFICO
-        // PUT: api/<UsuarioController>
+        // PUT: api/Sistema
         //[HttpPut("{id_empresa:int}")]
         [HttpPut()]     // "{id:int}"
         public async Task<Sistema> EditarSistema(Sistema entidad)

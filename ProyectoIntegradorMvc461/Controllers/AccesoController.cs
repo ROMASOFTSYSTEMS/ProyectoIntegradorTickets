@@ -12,9 +12,14 @@ namespace ProyectoIntegradorMvc461.Controllers
     public class AccesoController : Controller
     {
         UsuarioModel model;
+        Perfil_OpcionModel modelPerfilOpcion;
+        Usuario_PerfilModel modelUsuarioPerfil;
+        private int id_perfil;
         public AccesoController()
         {
             this.model = new UsuarioModel();
+            this.modelPerfilOpcion = new Perfil_OpcionModel();
+            this.modelUsuarioPerfil = new Usuario_PerfilModel();
         }
 
         // GET: Acceso
@@ -36,7 +41,18 @@ namespace ProyectoIntegradorMvc461.Controllers
                     ViewBag.Error = "Usuario o contrasena invalido";
                     return View();
                 }
+                //Session["Username"] = Obj.c_usuario.ToString();
+                List<Usuario_Perfil> LstUsuarioPerfil = await modelUsuarioPerfil.GetUsuario_Perfiles(Obj.id_usuario);
+                if (LstUsuarioPerfil.Count() < 1)
+                {
+                    ViewBag.Error = "Usuario no cuenta con un Perfil Definido";
+                    return View();
+                }
+                id_perfil = LstUsuarioPerfil[0].id_perfil;
+                List <Perfil_Opcion> LstPerfilOpcion = await modelPerfilOpcion.GetPerfil_Opciones(id_perfil);
                 Session["User"] = Obj;
+                Session["Opciones"] = LstPerfilOpcion;
+                Session["Perfil"] = LstUsuarioPerfil;
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)

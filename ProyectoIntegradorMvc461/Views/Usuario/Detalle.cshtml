@@ -1,0 +1,67 @@
+﻿@model ProyectoIntegradorMvc461.Models.Usuario
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.id_usuario }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

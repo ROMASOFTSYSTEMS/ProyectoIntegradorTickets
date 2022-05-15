@@ -11,30 +11,30 @@ namespace ProyectoIntegradorApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class PerfilController : ControllerBase
     {
         private readonly ApplicationDbContext _DataBase;
-        public EmpresaController(ApplicationDbContext db)
+        public PerfilController(ApplicationDbContext db)
         {
             _DataBase = db;
         }
 
         // METODOS EN GENERAL 
         #region GET TODOS
-        // GET: api/Empresa
+        // GET: api/Perfil
         [HttpGet]
-        public async Task<IActionResult> GetallEmpresas()
+        public async Task<IActionResult> GetallPerfils()
         {
-            var lista = await _DataBase.Empresa.OrderBy(c => c.t_empresa).ToListAsync();
+            var lista = await _DataBase.Perfil.OrderBy(c => c.t_perfil).ToListAsync();
             return Ok(lista);
         }
         #endregion
         #region GET ESPECIFICO
-        // GET: api/Empresa/5
+        // GET: api/Perfil/5
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetEmpresa(int id)
+        public async Task<IActionResult> GetPerfil(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Perfil.FirstOrDefaultAsync(c => c.id_perfil == id);
             if (obj == null)
             {
                 return NotFound();
@@ -43,9 +43,9 @@ namespace ProyectoIntegradorApi.Controllers
         }
         #endregion
         #region POST NUEVO
-        // POST: api/Empresa
+        // POST: api/Perfil
         [HttpPost]
-        public async Task<IActionResult> CrearEmpresa([FromBody] Empresa entidad)
+        public async Task<IActionResult> CrearPerfil([FromBody] Perfil entidad)
         {
             if (entidad == null)
             {
@@ -57,40 +57,39 @@ namespace ProyectoIntegradorApi.Controllers
             }
             await _DataBase.AddAsync(entidad);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa creada");
+            return Ok("Perfil creada");
         }
 
         #endregion
         #region PUT ACTUALIZA REGISTRO - MODIFICA UN REGISTRO ESPECIFICO
-        // PUT: api/Empresa
+        // PUT: api/Perfil
         [HttpPut()]     // "{id:int}"
-        public async Task<Empresa> EditarEmpresa(Empresa entidad)       // int id_empresa
+        public async Task<Perfil> EditarPerfil(Perfil entidad) 
         {
-            var result = await _DataBase.Empresa.FirstOrDefaultAsync(e => e.id_empresa == entidad.id_empresa);
+            var result = await _DataBase.Perfil.FirstOrDefaultAsync(e => e.id_perfil == entidad.id_perfil);
 
             if (result != null)
             {
-                result.t_empresa = entidad.t_empresa;
-                result.f_estado = entidad.f_estado;
+                result.t_perfil = entidad.t_perfil;
                 await _DataBase.SaveChangesAsync();
                 return result;
             }
-            //return Ok("Empresa actualizada");
+            //return Ok("Perfil actualizada");
             return null;
         }
         #endregion
-        #region ELIMINAR REGISTRO
+        #region DELETE ELIMINAR REGISTRO
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarEmpresa(int id)
+        public async Task<IActionResult> EliminarPerfil(int id)
         {
-            var obj = await _DataBase.Empresa.FirstOrDefaultAsync(c => c.id_empresa == id);
+            var obj = await _DataBase.Perfil.FirstOrDefaultAsync(c => c.id_perfil == id);
             if (obj == null)
             {
-                return BadRequest("Empresa no encontrada");
+                return BadRequest("Perfil no encontrado");
             }
             _DataBase.Remove(obj);
             await _DataBase.SaveChangesAsync();
-            return Ok("Empresa eliminada");
+            return Ok("Perfil eliminado");
         }
         #endregion
     }

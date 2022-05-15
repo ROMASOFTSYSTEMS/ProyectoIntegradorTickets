@@ -10,43 +10,43 @@ using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
-    public class EmpresaController : Controller
+    public class PerfilController : Controller
     {
-        EmpresaModel model;
-        public EmpresaController()
+        PerfilModel model;
+        public PerfilController()
         {
-            this.model = new EmpresaModel();
+            this.model = new PerfilModel();
         }
 
-        // GET: Empresas
+        // GET: Perfils
         [AsyncTimeout(1000)]
-        [AutorizaUsuario(IdOpcion:2)]   // Filtro 
+        [AutorizaUsuario(IdOpcion: 7)]   // Filtro 
         public async Task<ActionResult> Index()
         {
-            List<Empresa> cList = await model.GetEmpresa();
+            List<Perfil> cList = await model.GetPerfil();
             return View(cList);
         }
 
         // GET: Contacts/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Detalle(int id)
         {
-            Empresa c = await model.GetEmpresaByID(id);
+            Perfil c = await model.GetPerfilByID(id);
             return View(c);
         }
 
         // GET: Contacts/Create
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Crear()
         {
             return View();
         }
 
         // POST: Contacts/Create
         [HttpPost]
-        public async Task<ActionResult> Create(Empresa c)
+        public async Task<ActionResult> Crear(Perfil c)
         {
             try
             {
-                await model.AddEmpresa(c);
+                await model.AddPerfil(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -56,19 +56,19 @@ namespace ProyectoIntegradorMvc461.Controllers
         }
 
         // GET: Contacts/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Editar(int id)
         {
-            Empresa c = await model.GetEmpresaByID(id);
+            Perfil c = await model.GetPerfilByID(id);
             return View(c);
         }
 
         // POST: Contacts/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit(Empresa c)
+        public async Task<ActionResult> Editar(Perfil c)
         {
             try
             {
-                await model.EditEmpresa(c);
+                await model.EditPerfil(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -78,9 +78,9 @@ namespace ProyectoIntegradorMvc461.Controllers
         }
 
         // GET: Contacts/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Eliminar(int id)
         {
-            await model.DeleteEmpresa(id);
+            await model.DeletePerfil(id);
             return RedirectToAction("Index");
         }
     }

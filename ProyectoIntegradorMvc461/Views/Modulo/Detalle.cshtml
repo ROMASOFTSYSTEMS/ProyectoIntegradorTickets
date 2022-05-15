@@ -1,0 +1,43 @@
+﻿@model ProyectoIntegradorMvc461.Models.Modulo
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Modulo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_modulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_modulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_modulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_modulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.id_modulo }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

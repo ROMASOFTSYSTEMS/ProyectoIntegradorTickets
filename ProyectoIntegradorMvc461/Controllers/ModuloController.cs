@@ -6,6 +6,7 @@ using System.Web.Mvc;
 //Usings
 using System.Threading.Tasks;
 using ProyectoIntegradorMvc461.Models;
+using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
@@ -19,28 +20,29 @@ namespace ProyectoIntegradorMvc461.Controllers
 
         // GET: Modulos
         [AsyncTimeout(1000)]
+        [AutorizaUsuario(IdOpcion: 4)]   // Filtro 
         public async Task<ActionResult> Index()
         {
             List<Modulo> cList = await model.GetModulo();
             return View(cList);
         }
 
-        // GET: Contacts/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Modulo/Detalle/5
+        public async Task<ActionResult> Detalle(int id)
         {
             Modulo c = await model.GetModuloByID(id);
             return View(c);
         }
 
-        // GET: Contacts/Create
-        public async Task<ActionResult> Create()
+        // GET: Modulo/Crear
+        public async Task<ActionResult> Crear()
         {
             return View();
         }
 
-        // POST: Contacts/Create
+        // POST: Modulo/Crear
         [HttpPost]
-        public async Task<ActionResult> Create(Modulo c)
+        public async Task<ActionResult> Crear(Modulo c)
         {
             try
             {
@@ -53,16 +55,16 @@ namespace ProyectoIntegradorMvc461.Controllers
             }
         }
 
-        // GET: Contacts/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        // GET: Modulo/Editar/5
+        public async Task<ActionResult> Editar(int id)
         {
             Modulo c = await model.GetModuloByID(id);
             return View(c);
         }
 
-        // POST: Contacts/Edit/5
+        // POST: Modulo/Editar/5
         [HttpPost]
-        public async Task<ActionResult> Edit(Modulo c)
+        public async Task<ActionResult> Editar(Modulo c)
         {
             try
             {
@@ -75,8 +77,8 @@ namespace ProyectoIntegradorMvc461.Controllers
             }
         }
 
-        // GET: Contacts/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        // GET: Modulo/Eliminar/5
+        public async Task<ActionResult> Eliminar(int id)
         {
             await model.DeleteModulo(id);
             return RedirectToAction("Index");

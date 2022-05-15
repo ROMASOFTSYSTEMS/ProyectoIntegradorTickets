@@ -1,4 +1,4 @@
-﻿//Perfil_OpcionModel
+﻿//Usuario_PerfilModel
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +10,28 @@ using System.Threading.Tasks;
 
 namespace ProyectoIntegradorMvc461.Models
 {
-    public class Perfil_OpcionModel
+    public class Usuario_PerfilModel
     {
         private String UriApi;
         MediaTypeWithQualityHeaderValue mediaheader;
-        public Perfil_OpcionModel()
+        public Usuario_PerfilModel()
         {
             this.UriApi = "https://localhost:44396/"; // Local API
             this.mediaheader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
         }
 
-        public async Task<Perfil_Opcion> GetPerfil_Opcion(int perfil, int opcion)
+        public async Task<Usuario_Perfil> GetUsuario_Perfil(int usuario, int perfil)
         {
             using (HttpClient client = new HttpClient())
             {
-                String petition = "api/Perfil_Opcion/" + perfil + "/" + opcion;
+                String petition = "api/Usuario_Perfil/" + usuario + "/" + perfil;
                 client.BaseAddress = new Uri(this.UriApi);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(mediaheader);
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    Perfil_Opcion c = await respuesta.Content.ReadAsAsync<Perfil_Opcion>();
+                    Usuario_Perfil c = await respuesta.Content.ReadAsAsync<Usuario_Perfil>();
                     return c;
                 }
                 else { return null; }
@@ -39,19 +39,18 @@ namespace ProyectoIntegradorMvc461.Models
 
         }
 
-        public async Task<List<Perfil_Opcion>> GetPerfil_Opciones(int perfil)
+        public async Task<List<Usuario_Perfil>> GetUsuario_Perfiles(int usuario)
         {
             using (HttpClient client = new HttpClient())
             {
-                String petition = "api/Perfil_Opcion/" + perfil;
+                String petition = "api/Usuario_Perfil/" + usuario;
                 client.BaseAddress = new Uri(this.UriApi);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(mediaheader);
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    //Perfil_Opcion c = await respuesta.Content.ReadAsAsync<Perfil_Opcion>();
-                    List<Perfil_Opcion> cList = await respuesta.Content.ReadAsAsync<List<Perfil_Opcion>>();
+                    List<Usuario_Perfil> cList = await respuesta.Content.ReadAsAsync<List<Usuario_Perfil>>();
                     return cList;
                 }
                 else { return null; }

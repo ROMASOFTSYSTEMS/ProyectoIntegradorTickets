@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Modulo>
+﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Perfil>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.id_modulo)
+            @Html.DisplayNameFor(model => model.id_perfil)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.t_modulo)
+            @Html.DisplayNameFor(model => model.t_perfil)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.f_estado)
@@ -27,18 +27,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.id_modulo)
+            @Html.DisplayFor(modelItem => item.id_perfil)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.t_modulo)
+            @Html.DisplayFor(modelItem => item.t_perfil)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.f_estado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Editar", new { id = item.id_modulo }) |
-            @Html.ActionLink("Details", "Detalle", new { id = item.id_modulo }) |
-            @Html.ActionLink("Delete", "Eliminar", new { id=item.id_modulo })
+            @Html.ActionLink("Editar", "Editar", new { id=item.id_perfil }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id = item.id_perfil }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_perfil })
         </td>
     </tr>
 }
