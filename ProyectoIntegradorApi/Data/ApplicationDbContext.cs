@@ -31,5 +31,7 @@ namespace ProyectoIntegradorApi.Data
         public DbSet<Estado_Ticket> Estado_Ticket { get; set; }
         public DbSet<Tipo_Ticket> Tipo_Ticket { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
+        // Estado
+        public DbSet<Estado> Estado { get; set; }
     }
 }

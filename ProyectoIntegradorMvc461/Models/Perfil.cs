@@ -9,7 +9,9 @@ namespace ProyectoIntegradorMvc461.Models
     public class Perfil
     {
         public int id_perfil { get; set; }
+        [Required(ErrorMessage = "Debe ingresar Descripcion")]
         public string t_perfil { get; set; }
+        [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado{ get; set; }
     }
 }

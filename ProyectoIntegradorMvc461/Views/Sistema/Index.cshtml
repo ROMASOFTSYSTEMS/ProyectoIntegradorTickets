@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Listado de Sistemas</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @*@Html.ActionLink("Nuevo", "Crear")*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Crear", "Sistema")'">Crear Nuevo</button>
 </p>
 <table class="table">
     <tr>
@@ -36,9 +37,12 @@
             @Html.DisplayFor(modelItem => item.f_estado)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_sistema }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.id_sistema }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_sistema })
+            @*@Html.ActionLink("Editar", "Edit", new { id = item.id_sistema }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.id_sistema }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id_sistema })*@
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Sistema", new { id = item.id_sistema})'">Editar</button>
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Sistema", new { id = item.id_sistema})'">Detalles</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Sistema", new { id = item.id_sistema })'">Eliminar</button>
         </td>
     </tr>
 }

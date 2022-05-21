@@ -13,9 +13,11 @@ namespace ProyectoIntegradorMvc461.Controllers
     public class UsuarioController : Controller
     {
         UsuarioModel model;
+        EstadoModel modelEstado;
         public UsuarioController()
         {
             this.model = new UsuarioModel();
+            this.modelEstado = new EstadoModel();
         }
 
         // GET: Usuarios
@@ -37,10 +39,22 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Contacts/Create
         public async Task<ActionResult> Crear()
         {
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            //SelectListItem ObjSelectListItem = new SelectListItem();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
             Usuario ObjEntidadNew = new Usuario();
             ObjEntidadNew.id_usuario = 0;
             ObjEntidadNew.f_estado = 1;
             return View(ObjEntidadNew);
+            //return View();
         }
 
         // POST: Contacts/Create
@@ -63,11 +77,18 @@ namespace ProyectoIntegradorMvc461.Controllers
     // GET: Contacts/Edit/5
     public async Task<ActionResult> Editar(int id)
         {
+            // Para cargar Combo de Estado
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
             Usuario c = await model.GetUsuarioByID(id);
-            //Usuario ObjEntidadNew = new Usuario();
-            //ObjEntidadNew.id_usuario = 0;
-            //ObjEntidadNew.f_estado = 1;
-
             return View(c);
         }
 

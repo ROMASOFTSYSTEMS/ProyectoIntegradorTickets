@@ -38,7 +38,7 @@ namespace ProyectoIntegradorMvc461.Controllers
                 Usuario Obj = await model.GetUsuarioByUserPass(User, Pass);
                 if (Obj == null)
                 {
-                    ViewBag.Error = "Usuario o contrasena invalido";
+                    ViewBag.Error = "Usuario o contraseña invalido";
                     return View();
                 }
                 //Session["Username"] = Obj.c_usuario.ToString();

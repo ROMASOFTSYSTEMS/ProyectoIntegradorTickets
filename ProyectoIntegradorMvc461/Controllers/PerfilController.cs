@@ -13,9 +13,11 @@ namespace ProyectoIntegradorMvc461.Controllers
     public class PerfilController : Controller
     {
         PerfilModel model;
+        EstadoModel modelEstado;
         public PerfilController()
         {
             this.model = new PerfilModel();
+            this.modelEstado = new EstadoModel();
         }
 
         // GET: Perfils
@@ -37,7 +39,22 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Contacts/Create
         public async Task<ActionResult> Crear()
         {
-            return View();
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            //SelectListItem ObjSelectListItem = new SelectListItem();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
+            Perfil ObjEntidadNew = new Perfil();
+            ObjEntidadNew.id_perfil = 0;
+            ObjEntidadNew.f_estado = 1;
+            return View(ObjEntidadNew);
+            //return View();
         }
 
         // POST: Contacts/Create
@@ -58,6 +75,17 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Contacts/Edit/5
         public async Task<ActionResult> Editar(int id)
         {
+            // Para cargar Combo de Estado
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
             Perfil c = await model.GetPerfilByID(id);
             return View(c);
         }

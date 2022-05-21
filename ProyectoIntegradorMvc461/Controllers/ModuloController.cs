@@ -13,9 +13,11 @@ namespace ProyectoIntegradorMvc461.Controllers
     public class ModuloController : Controller
     {
         ModuloModel model;
+        EstadoModel modelEstado;
         public ModuloController()
         {
             this.model = new ModuloModel();
+            this.modelEstado = new EstadoModel();
         }
 
         // GET: Modulos
@@ -37,7 +39,22 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Modulo/Crear
         public async Task<ActionResult> Crear()
         {
-            return View();
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            //SelectListItem ObjSelectListItem = new SelectListItem();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
+            Modulo ObjEntidadNew = new Modulo();
+            ObjEntidadNew.id_modulo = 0;
+            ObjEntidadNew.f_estado = 1;
+            return View(ObjEntidadNew);
+            //return View();
         }
 
         // POST: Modulo/Crear
@@ -58,6 +75,17 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Modulo/Editar/5
         public async Task<ActionResult> Editar(int id)
         {
+            // Para cargar Combo de Estado
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
             Modulo c = await model.GetModuloByID(id);
             return View(c);
         }

@@ -38,6 +38,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Retornar a la Lista", "Index")
+    @*@Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Retornar a la Lista", "Index")*@
+
+    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Sistema", new { id = Model.id_sistema })'">Editar</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sistema")'">Regresar a la Lista</button>
 </p>

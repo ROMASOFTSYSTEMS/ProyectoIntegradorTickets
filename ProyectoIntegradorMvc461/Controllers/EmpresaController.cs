@@ -13,9 +13,11 @@ namespace ProyectoIntegradorMvc461.Controllers
     public class EmpresaController : Controller
     {
         EmpresaModel model;
+        EstadoModel modelEstado;
         public EmpresaController()
         {
             this.model = new EmpresaModel();
+            this.modelEstado = new EstadoModel();
         }
 
         // GET: Empresas
@@ -37,7 +39,21 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Contacts/Create
         public async Task<ActionResult> Create()
         {
-            return View();
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            //SelectListItem ObjSelectListItem = new SelectListItem();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
+            Empresa ObjEntidadNew = new Empresa();
+            ObjEntidadNew.id_empresa = 0;
+            ObjEntidadNew.f_estado = 1;
+            return View(ObjEntidadNew);
         }
 
         // POST: Contacts/Create
@@ -58,6 +74,17 @@ namespace ProyectoIntegradorMvc461.Controllers
         // GET: Contacts/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
+            // Para cargar Combo de Estado
+            List<Estado> cListEstado = await this.modelEstado.GetEstado();
+            List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            ViewBag.ItemsEstado = ItemsEstado;
             Empresa c = await model.GetEmpresaByID(id);
             return View(c);
         }
