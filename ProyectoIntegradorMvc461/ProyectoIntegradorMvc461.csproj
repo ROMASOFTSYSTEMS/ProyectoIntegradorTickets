@@ -121,6 +121,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\Usuario_EmpresaController.cs" />
     <Compile Include="Filters\AutorizaUsuario.cs" />
     <Compile Include="Filters\VerificaSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -140,6 +141,8 @@
     <Compile Include="Models\SistemaModel.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Models\Usuario_Empresa.cs" />
+    <Compile Include="Models\Usuario_EmpresaModel.cs" />
     <Compile Include="Models\Usuario_Perfil.cs" />
     <Compile Include="Models\Usuario_PerfilModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario_Empresa\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

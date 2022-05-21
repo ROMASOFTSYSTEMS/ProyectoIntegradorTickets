@@ -9,28 +9,28 @@ using System.Threading.Tasks;
 
 namespace ProyectoIntegradorMvc461.Models
 {
-    public class Usuario_PerfilModel
+    public class Usuario_EmpresaModel
     {
         private String UriApi;
         MediaTypeWithQualityHeaderValue mediaheader;
-        public Usuario_PerfilModel()
+        public Usuario_EmpresaModel()
         {
             this.UriApi = "https://localhost:44396/"; // Local API
             this.mediaheader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
         }
 
-        public async Task<Usuario_Perfil> GetUsuario_Perfil(int usuario, int perfil)
+        public async Task<Usuario_Empresa> GetUsuario_Empresa(int usuario, int perfil)
         {
             using (HttpClient client = new HttpClient())
             {
-                String petition = "api/Usuario_Perfil/" + usuario + "/" + perfil;
+                String petition = "api/Usuario_Empresa/" + usuario + "/" + perfil;
                 client.BaseAddress = new Uri(this.UriApi);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(mediaheader);
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    Usuario_Perfil c = await respuesta.Content.ReadAsAsync<Usuario_Perfil>();
+                    Usuario_Empresa c = await respuesta.Content.ReadAsAsync<Usuario_Empresa>();
                     return c;
                 }
                 else { return null; }
@@ -38,22 +38,21 @@ namespace ProyectoIntegradorMvc461.Models
 
         }
 
-        public async Task<List<Usuario_Perfil>> GetUsuario_Perfiles(int usuario)
+        public async Task<List<Usuario_Empresa>> GetUsuario_Empresas(int usuario)
         {
             using (HttpClient client = new HttpClient())
             {
-                String petition = "api/Usuario_Perfil/" + usuario;
+                String petition = "api/Usuario_Empresa/" + usuario;
                 client.BaseAddress = new Uri(this.UriApi);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(mediaheader);
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    List<Usuario_Perfil> cList = await respuesta.Content.ReadAsAsync<List<Usuario_Perfil>>();
+                    List<Usuario_Empresa> cList = await respuesta.Content.ReadAsAsync<List<Usuario_Empresa>>();
                     return cList;
                 }
                 else { return null; }
             }
         }
     }
-}
