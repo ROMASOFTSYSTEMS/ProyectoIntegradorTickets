@@ -45,7 +45,6 @@ namespace ProyectoIntegradorApi.Controllers
             return Ok(obj);
         }
         #endregion
-
         #region GET ESPECIFICO CON DOS PARAMETROS
         // TRAER UN REGISTRO ESPECIFICO
         // GET: api/<UsuarioController>/5
@@ -66,8 +65,6 @@ namespace ProyectoIntegradorApi.Controllers
             return Ok(obj);
         }
         #endregion
-
-
         #region POST NUEVO
         // CREA UN REGISTRO NUEVO
         // POST: api/<UsuarioController>

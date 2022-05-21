@@ -14,22 +14,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.id_usuario)
+            @*@Html.DisplayNameFor(model => model.id_usuario)*@
+            <label class="control-label col-md-2">Id</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.c_usuario)
+            @*@Html.DisplayNameFor(model => model.c_usuario)*@
+            <label class="control-label col-md-2">Usuario</label>
+        </th>
+        <!--<th>-->
+            @*@Html.DisplayNameFor(model => model.t_password)*@
+            <!--<label class="control-label col-md-2">Password</label>
+        </th>-->
+        <th>
+            @*@Html.DisplayNameFor(model => model.t_nombre)*@
+            <label class="control-label col-md-2">Nombre</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.t_password)
+            @*@Html.DisplayNameFor(model => model.t_correo)*@
+            <label class="control-label col-md-2">Correo</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.t_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.t_correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_estado)
+            @*@Html.DisplayNameFor(model => model.f_estado)*@
+            <label class="control-label col-md-2">Estado</label>
         </th>
         <th></th>
     </tr>
@@ -42,9 +48,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.c_usuario)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.t_password)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.t_nombre)
         </td>

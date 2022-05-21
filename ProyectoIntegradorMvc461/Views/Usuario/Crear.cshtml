@@ -13,12 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
-    <h4>Usuario</h4>
+    <h4>Modulo</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -30,37 +30,37 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.c_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">Usuario</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.c_usuario, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.c_usuario, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
-        @Html.LabelFor(model => model.t_password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">Password</label>
         <div class="col-md-10">
+            @*@Html.EditorFor(model => model.t_password, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.EditorFor(model => model.t_password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
             @Html.ValidationMessageFor(model => model.t_password, "", new { @class = "text-danger" })
+
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.t_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">Nombre</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.t_nombre, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.t_nombre, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
-        @Html.LabelFor(model => model.t_correo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">Correo</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.t_correo, new { htmlAttributes = new { @class = "form-control", placeholder = "user@dominio.com", type = "email" } })
+            @*@Html.EditorFor(model => model.t_correo, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.t_correo, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
         @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
         <label class="control-label col-md-2">Estado</label>
@@ -72,6 +72,7 @@
             <span asp-validation-for="cbo_estado" class="text-danger"></span>
         </div>
     </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Crear" class="btn btn-success" />
@@ -81,6 +82,10 @@
 }
 
 <div>
-    @*@Html.ActionLink("Regresar a la lista", "Index")*@
+    @*@Html.ActionLink("Regresar a la Lista", "Index")*@
     <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Usuario")'">Regresar a la Lista</button>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

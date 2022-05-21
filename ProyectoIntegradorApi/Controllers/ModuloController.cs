@@ -33,7 +33,7 @@ namespace ProyectoIntegradorApi.Controllers
         #region GET ESPECIFICO
         // TRAER UN REGISTRO ESPECIFICO
         // GET: api/<UsuarioController>/5
-        //[HttpGet("{id_empresa:int}")]
+        //[HttpGet("{id_modulo:int}")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetModulo(int id)
         {
@@ -69,13 +69,14 @@ namespace ProyectoIntegradorApi.Controllers
         // MODIFICA UN REGISTRO ESPECIFICO
         // PUT: api/<ModuloController>
         [HttpPut()]
-        public async Task<Modulo> EditarModulo(Modulo empresa)
+        public async Task<Modulo> EditarModulo(Modulo entidad)
         {
-            var result = await _DataBase.Modulo.FirstOrDefaultAsync(e => e.id_modulo == empresa.id_modulo);
+            var result = await _DataBase.Modulo.FirstOrDefaultAsync(e => e.id_modulo == entidad.id_modulo);
 
             if (result != null)
             {
-                result.t_modulo = empresa.t_modulo;
+                result.t_modulo = entidad.t_modulo;
+                result.f_estado = entidad.f_estado;
                 await _DataBase.SaveChangesAsync();
                 return result;
             }

@@ -71,6 +71,7 @@ namespace ProyectoIntegradorApi.Controllers
             if (result != null)
             {
                 result.t_perfil = entidad.t_perfil;
+                result.f_estado = entidad.f_estado;
                 await _DataBase.SaveChangesAsync();
                 return result;
             }
