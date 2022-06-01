@@ -1,0 +1,51 @@
+﻿@model ProyectoIntegradorMvc461.Models.Usuario_Empresa
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Usuario_Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

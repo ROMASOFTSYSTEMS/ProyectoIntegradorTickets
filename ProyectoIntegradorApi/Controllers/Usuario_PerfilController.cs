@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProyectoIntegradorApi.Models;
+using System.Collections.Generic;
+using ProyectoIntegradorApi.Tickets;
+using ProyectoIntegradorApi.Repositorios;
 
 namespace ProyectoIntegradorApi.Controllers
 {
@@ -13,100 +16,116 @@ namespace ProyectoIntegradorApi.Controllers
     [ApiController]
     public class Usuario_PerfilController : ControllerBase
     {
-        private readonly ApplicationDbContext _DataBase;
-        public Usuario_PerfilController(ApplicationDbContext db)
+        //private readonly ApplicationDbContext _DataBase;
+        private IUsuario_PerfilRepositorio _Usuario_PerfilRepositorio;
+        public Usuario_PerfilController(IUsuario_PerfilRepositorio repositorio)
         {
-            _DataBase = db;
+            this._Usuario_PerfilRepositorio = repositorio;
         }
 
-        // METODOS EN GENERAL 
-        #region GET TODOS
-        // GET: api/Usuario_Perfil
+        // GET: api/ticket
         [HttpGet]
-        public async Task<IActionResult> GetallUsuario_Perfil()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<Usuario_Perfil>>> Get()
         {
-            var lista = await _DataBase.Usuario_Perfil.OrderBy(c => c.id_usuario_perfil).ToListAsync();
-            return Ok(lista);
-        }
-        #endregion
-        #region GET ESPECIFICO 
-        [HttpGet("{id_usuario:int}")]
-        public async Task<IActionResult> GetUsuario_Perfiles(int id_usuario)
-        {
-            var lista = await _DataBase.Usuario_Perfil.Where(c => c.id_usuario == id_usuario).OrderBy(c => c.id_usuario).ToListAsync();
-            if (lista == null)
+            try
             {
-                return NotFound();
+                List<Usuario_Perfil> Listado = await _Usuario_PerfilRepositorio.GetUsuario_Perfil_Listado();
+                return Listado;
             }
-            return Ok(lista);
-        }
-        #endregion
-        #region GET ESPECIFICO CON DOS PARAMETROS
-        // GET: api/Usuario_Perfil/1/1
-        [HttpGet("{id_usuario:int}/{id_perfil:int}")]
-        public async Task<IActionResult> GetUsuario_PerfilUsuario_Perfil(int id_usuario, int id_perfil)
-        {
-            var obj = await _DataBase.Usuario_Perfil.FirstOrDefaultAsync(c => c.id_usuario == id_usuario && c.id_perfil == id_perfil);
-            if (obj == null)
+            catch (System.Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
-            return Ok(obj);
         }
-        #endregion
-        #region POST NUEVO
-        // CREA UN REGISTRO NUEVO
-        // POST: api/Usuario_Perfil
+
+        //// GET: api/ticket/5
+        //[HttpGet("{id_usuario}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult<List<Usuario_Perfil>>> GetUsuario_Perfiles(int id_usuario)
+        //{
+        //    try
+        //    {
+        //        List<Usuario_Perfil> Listado2 = await _Usuario_PerfilRepositorio.GetUsuario_Perfiles(id_usuario);
+        //        return Listado2;
+        //    }
+        //    catch (System.Exception)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
+
+        // GET: api/ticket/5
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Usuario_Perfil>> Get(int id)
+        {
+            try
+            {
+                Usuario_Perfil entidad = await _Usuario_PerfilRepositorio.GetUsuario_PerfilId(id);
+                return entidad;
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> CrearUsuario_Perfil([FromBody] Usuario_Perfil usuario)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<bool> Post(Usuario_Perfil entidad)
         {
-            if (usuario == null)
+            try
             {
-                return BadRequest(ModelState);
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _DataBase.AddAsync(usuario);
-            await _DataBase.SaveChangesAsync();
-            return Ok("Usuario_Perfil creado");
-        }
-
-        #endregion
-        #region PUT ACTUALIZA REGISTRO
-        // PUT: api/Usuario_Perfil
-        [HttpPut()]
-        public async Task<Usuario_Perfil> EditarUsuario_Perfil(Usuario_Perfil entidad)
-        {
-            var result = await _DataBase.Usuario_Perfil.FirstOrDefaultAsync(e => e.id_usuario_perfil == entidad.id_usuario_perfil);
-
-            if (result != null)
-            {
-                result.id_usuario = entidad.id_usuario;
-                result.id_perfil = entidad.id_perfil;
-                result.f_estado = entidad.f_estado;
-                await _DataBase.SaveChangesAsync();
+                bool result = await _Usuario_PerfilRepositorio.Grabar(entidad);
                 return result;
             }
-            //return Ok("Usuario_Perfil actualizado");
-            return null;
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+        #region PUT ACTUALIZA REGISTRO - MODIFICA UN REGISTRO ESPECIFICO
+        // PUT: api/Usuario_Perfil
+        [HttpPut()]
+        public async Task<bool> Put(Usuario_Perfil entidad)
+        {
+            try
+            {
+                bool result = await _Usuario_PerfilRepositorio.Grabar(entidad);
+                return result;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+        #endregion
+        // DELETE: api/ticket/5
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                bool result = await _Usuario_PerfilRepositorio.Eliminar(id);
+                if (!result)
+                {
+                    return BadRequest();
+                }
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
         }
 
-        #endregion
-        #region ELIMINAR REGISTRO
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarUsuario_Perfil(int id)
-        {
-            var obj = await _DataBase.Usuario_Perfil.FirstOrDefaultAsync(c => c.id_usuario_perfil == id);
-            if (obj == null)
-            {
-                return BadRequest("Usuario_Perfil no encontrado");
-            }
-            _DataBase.Remove(obj);
-            await _DataBase.SaveChangesAsync();
-            return Ok("Usuario_Perfil eliminado");
-        }
-        #endregion
     }
 }

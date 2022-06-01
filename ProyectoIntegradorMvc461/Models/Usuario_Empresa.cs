@@ -13,6 +13,8 @@ namespace ProyectoIntegradorMvc461.Models
         public int id_usuario { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Empresa")]
         public int id_empresa { get; set; }
+        public string c_usuario { get; set; }
+        public string t_empresa { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado { get; set; }
     }

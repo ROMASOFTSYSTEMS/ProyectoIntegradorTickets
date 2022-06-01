@@ -11,7 +11,9 @@ namespace ProyectoIntegradorApi.Models
         [Key]
         public int id_usuario_perfil { get; set; }
         public int id_usuario { get; set; }
+        public string c_usuario { get; set; }
         public int id_perfil { get; set; }
+        public string t_perfil { get; set; }
         public int f_estado { get; set; }
     }
 }

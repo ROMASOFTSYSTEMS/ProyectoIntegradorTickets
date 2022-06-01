@@ -4,14 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
+
 namespace ProyectoIntegradorMvc461.Models
 {
-    public class Modulo
+    public class Tipo_Ticket
     {
-        public int id_modulo { get; set; }
+        [Key]
+        public int id_tipo_ticket { get; set; }
         [Required(ErrorMessage = "Debe ingresar Descripcion")]
-        public string t_modulo { get; set; }
+        public string t_tipo_ticket { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado { get; set; }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 //Usings
 using ProyectoIntegradorApi.Models;
-namespace ProyectoIntegradorApi.Repositories
+namespace ProyectoIntegradorApi.Repositorios
 {
 
     public interface IEmpresaRepositorio

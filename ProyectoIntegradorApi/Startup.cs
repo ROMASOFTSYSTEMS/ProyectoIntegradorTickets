@@ -13,6 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProyectoIntegradorApi.Data;
+// Usings Nuevos
+using ProyectoIntegradorApi.DAL.Tickets;
+using ProyectoIntegradorApi.DAL.Repositorios;
+using ProyectoIntegradorApi.Tickets;
 
 namespace ProyectoIntegradorApi
 {
@@ -30,7 +34,10 @@ namespace ProyectoIntegradorApi
         {
             // Inyeccion de Dependencias
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CadenaSQL")));
-
+            // Inyeccion de Dependencias Singleton
+            services.AddSingleton<ITicketRepositorio>(new TicketDAL(Configuration.GetConnectionString("CadenaSQL")));
+            services.AddSingleton<IUsuario_EmpresaRepositorio>(new Usuario_EmpresaDAL(Configuration.GetConnectionString("CadenaSQL")));
+            services.AddSingleton<IUsuario_PerfilRepositorio>(new Usuario_PerfilDAL(Configuration.GetConnectionString("CadenaSQL")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

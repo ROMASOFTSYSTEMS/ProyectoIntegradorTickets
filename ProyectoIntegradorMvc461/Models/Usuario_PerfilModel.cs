@@ -18,7 +18,6 @@ namespace ProyectoIntegradorMvc461.Models
             this.UriApi = "https://localhost:44396/"; // Local API
             this.mediaheader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
         }
-
         public async Task<Usuario_Perfil> GetUsuario_Perfil(int usuario, int perfil)
         {
             using (HttpClient client = new HttpClient())
@@ -38,21 +37,54 @@ namespace ProyectoIntegradorMvc461.Models
 
         }
 
-        public async Task<List<Usuario_Perfil>> GetUsuario_Perfiles(int usuario)
+        public async Task<Usuario_Perfil> GetUsuario_PerfilByID(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                String petition = "api/Usuario_Perfil/" + usuario;
+                String petition = "api/Usuario_Perfil/" + id;
                 client.BaseAddress = new Uri(this.UriApi);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(mediaheader);
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    List<Usuario_Perfil> cList = await respuesta.Content.ReadAsAsync<List<Usuario_Perfil>>();
-                    return cList;
+                    Usuario_Perfil c = await respuesta.Content.ReadAsAsync<Usuario_Perfil>();
+                    return c;
                 }
                 else { return null; }
+            }
+        }
+        public async Task AddUsuario_Perfil(Usuario_Perfil c)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Usuario_Perfil";
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.PostAsJsonAsync(peticion, c);
+            }
+        }
+        public async Task EditUsuario_Perfil(Usuario_Perfil c)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Usuario_Perfil";
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.PutAsJsonAsync(peticion, c);
+            }
+        }
+        public async Task DeleteUsuario_Perfil(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Usuario_Perfil/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.DeleteAsync(peticion);
             }
         }
     }

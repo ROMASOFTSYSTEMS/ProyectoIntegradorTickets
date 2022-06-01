@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Usuario_Empresa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.id_usuario_empresa)*@
+            Id
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.id_usuario)*@
+            Usuario
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.id_empresa)*@
+            Empresa
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.f_estado)*@
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_usuario_empresa)
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.id_usuario)*@
+        @Html.DisplayFor(modelItem => item.c_usuario)
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.id_empresa)*@
+        @Html.DisplayFor(modelItem => item.t_empresa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.f_estado)
+    </td>
+    @*<td>
+        @Html.ActionLink("Editar", "Editar", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Detalles", "Detalle", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>*@
+
+    <td>
+        @*@Html.ActionLink("Edit", "Editar", new { id = item.id_modulo }) |
+            @Html.ActionLink("Details", "Detalle", new { id = item.id_modulo }) |
+            @Html.ActionLink("Delete", "Eliminar", new { id = item.id_modulo })*@
+        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Editar</button>
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Detalles</button>
+        <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Eliminar</button>
+
+    </td>
+</tr>
+}
+
+</table>

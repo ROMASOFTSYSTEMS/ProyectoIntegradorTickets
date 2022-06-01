@@ -14,12 +14,14 @@ namespace ProyectoIntegradorMvc461.Controllers
         UsuarioModel model;
         Perfil_OpcionModel modelPerfilOpcion;
         Usuario_PerfilModel modelUsuarioPerfil;
+        Usuario_PerfilesModel modelUsuarioPerfiles;
         private int id_perfil;
         public AccesoController()
         {
             this.model = new UsuarioModel();
             this.modelPerfilOpcion = new Perfil_OpcionModel();
             this.modelUsuarioPerfil = new Usuario_PerfilModel();
+            this.modelUsuarioPerfiles = new Usuario_PerfilesModel();
         }
 
         // GET: Acceso
@@ -42,7 +44,9 @@ namespace ProyectoIntegradorMvc461.Controllers
                     return View();
                 }
                 //Session["Username"] = Obj.c_usuario.ToString();
-                List<Usuario_Perfil> LstUsuarioPerfil = await modelUsuarioPerfil.GetUsuario_Perfiles(Obj.id_usuario);
+                //var IdUsuario = Convert.ToInt32(Session["IdUsuario"]);
+                
+                List<Usuario_Perfil> LstUsuarioPerfil = await modelUsuarioPerfiles.GetUsuario_Perfiles(Obj.id_usuario);
                 if (LstUsuarioPerfil.Count() < 1)
                 {
                     ViewBag.Error = "Usuario no cuenta con un Perfil Definido";
@@ -53,6 +57,7 @@ namespace ProyectoIntegradorMvc461.Controllers
                 Session["User"] = Obj;
                 Session["Opciones"] = LstPerfilOpcion;
                 Session["Perfil"] = LstUsuarioPerfil;
+                Session["id_usuario"] = Obj.id_usuario;
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
