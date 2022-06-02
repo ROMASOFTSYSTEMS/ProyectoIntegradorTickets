@@ -10,38 +10,36 @@ using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
-    public class EmpresaController : Controller
+    public class Estado_TicketController : Controller
     {
-        EmpresaModel model;
+        Estado_TicketModel model;
         EstadoModel modelEstado;
-        public EmpresaController()
+        public Estado_TicketController()
         {
-            this.model = new EmpresaModel();
+            this.model = new Estado_TicketModel();
             this.modelEstado = new EstadoModel();
         }
 
-        // GET: Empresas
+        // GET: Estado_Tickets
         [AsyncTimeout(1000)]
-        [AutorizaUsuario(IdOpcion:2)]   // Filtro 
+        [AutorizaUsuario(IdOpcion: 11)]   // Filtro 
         public async Task<ActionResult> Index()
         {
-            //ViewBag.TipoUsuario = Session["TipoUsuario"];
-            List<Empresa> cList = await model.GetEmpresa();
+            List<Estado_Ticket> cList = await model.GetEstado_Ticket();
             return View(cList);
         }
 
-        // GET: Contacts/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Estado_Ticket/Detalle/5
+        public async Task<ActionResult> Detalle(int id)
         {
-            Empresa c = await model.GetEmpresaByID(id);
+            Estado_Ticket c = await model.GetEstado_TicketByID(id);
             return View(c);
         }
 
-        // GET: Contacts/Create
-        public async Task<ActionResult> Create()
+        // GET: Estado_Ticket/Crear
+        public async Task<ActionResult> Crear()
         {
             List<Estado> cListEstado = await this.modelEstado.GetEstado();
-            //SelectListItem ObjSelectListItem = new SelectListItem();
             List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
                 return new SelectListItem()
                 {
@@ -51,19 +49,20 @@ namespace ProyectoIntegradorMvc461.Controllers
                 };
             });
             ViewBag.ItemsEstado = ItemsEstado;
-            Empresa ObjEntidadNew = new Empresa();
-            ObjEntidadNew.id_empresa = 0;
+            Estado_Ticket ObjEntidadNew = new Estado_Ticket();
+            ObjEntidadNew.id_estado_ticket = 0;
             ObjEntidadNew.f_estado = 1;
             return View(ObjEntidadNew);
+            //return View();
         }
 
-        // POST: Contacts/Create
+        // POST: Estado_Ticket/Crear
         [HttpPost]
-        public async Task<ActionResult> Create(Empresa c)
+        public async Task<ActionResult> Crear(Estado_Ticket c)
         {
             try
             {
-                await model.AddEmpresa(c);
+                await model.AddEstado_Ticket(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -72,8 +71,8 @@ namespace ProyectoIntegradorMvc461.Controllers
             }
         }
 
-        // GET: Contacts/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        // GET: Estado_Ticket/Editar/5
+        public async Task<ActionResult> Editar(int id)
         {
             // Para cargar Combo de Estado
             List<Estado> cListEstado = await this.modelEstado.GetEstado();
@@ -86,17 +85,17 @@ namespace ProyectoIntegradorMvc461.Controllers
                 };
             });
             ViewBag.ItemsEstado = ItemsEstado;
-            Empresa c = await model.GetEmpresaByID(id);
+            Estado_Ticket c = await model.GetEstado_TicketByID(id);
             return View(c);
         }
 
-        // POST: Contacts/Edit/5
+        // POST: Estado_Ticket/Editar/5
         [HttpPost]
-        public async Task<ActionResult> Edit(Empresa c)
+        public async Task<ActionResult> Editar(Estado_Ticket c)
         {
             try
             {
-                await model.EditEmpresa(c);
+                await model.EditEstado_Ticket(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -104,11 +103,10 @@ namespace ProyectoIntegradorMvc461.Controllers
                 return View();
             }
         }
-
-        // GET: Contacts/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        // GET: Estado_Ticket/Eliminar/5
+        public async Task<ActionResult> Eliminar(int id)
         {
-            await model.DeleteEmpresa(id);
+            await model.DeleteEstado_Ticket(id);
             return RedirectToAction("Index");
         }
     }

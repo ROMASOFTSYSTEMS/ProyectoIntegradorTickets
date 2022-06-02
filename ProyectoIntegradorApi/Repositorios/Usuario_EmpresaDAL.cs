@@ -49,6 +49,42 @@ namespace ProyectoIntegradorApi.DAL.Repositorios
             return ObjEntidad;
         }
 
+        public async Task<List<Usuario_Empresa>> GetUsuario_Empresas(int id_usuario)
+        {
+            List<Usuario_Empresa> Listado = new List<Usuario_Empresa>();
+
+            using (SqlConnection con = new SqlConnection(_CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("USP_Usuario_Empresa_Consulta", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_usuario_empresa", null);
+                cmd.Parameters.AddWithValue("@id_usuario", id_usuario);
+                try
+                {
+                    await con.OpenAsync();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        Listado.Add(new Usuario_Empresa
+                        {
+                            id_usuario_empresa = Convert.ToInt32(dr["id_usuario_empresa"]),
+                            id_usuario = Convert.ToInt32(dr["id_usuario"]),
+                            id_empresa = Convert.ToInt32(dr["id_empresa"]),
+                            c_usuario = dr["c_usuario"].ToString(),
+                            t_empresa = dr["t_empresa"].ToString(),
+                            f_estado = Convert.ToInt32(dr["f_estado"])
+                        });
+                    }
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    string xx = ex.Message.ToString();
+                    con.Close();
+                }
+            }
+            return Listado;
+        }
         public async Task<List<Usuario_Empresa>> GetUsuario_Empresa_Listado()
         {
             List<Usuario_Empresa> Listado = new List<Usuario_Empresa>();
@@ -108,7 +144,6 @@ namespace ProyectoIntegradorApi.DAL.Repositorios
                 }
             }
         }
-
         public async Task<bool> Eliminar(int id)
         {
             using (SqlConnection con = new SqlConnection(_CadenaConexion))
@@ -130,8 +165,5 @@ namespace ProyectoIntegradorApi.DAL.Repositorios
                 }
             }
         }
-
-
-
     }
 }

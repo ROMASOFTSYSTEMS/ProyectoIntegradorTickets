@@ -13,6 +13,7 @@ namespace ProyectoIntegradorMvc461.Models
         public int id_perfil { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Opcion")]
         public int id_opcion { get; set; }
+        public string t_opcion { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado { get; set; }
     }

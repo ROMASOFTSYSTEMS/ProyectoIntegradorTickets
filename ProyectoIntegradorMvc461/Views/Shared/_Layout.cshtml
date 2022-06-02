@@ -79,8 +79,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Contol de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("CContol de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                @*@Html.ActionLink((string)@ViewBag.TipoUsuario, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
                 @*@Html.ActionLink(Session["Username"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                @*@Html.ActionLink((string)Session["Username"].ToString(), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                @Html.ActionLink("Control de Tickets", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             @*Este es el Menu que se reemplaza*@
             @*<div class="navbar-collapse collapse">
@@ -118,9 +122,10 @@
             <div class="mynav_dropdown">
                 <button class="mynav_dropbtn">Tickets<i class="fa fa-caret-down"></i></button>
                 <div class="mynav_dropdown-content">
-                    @Html.ActionLink("Estado de Ticket", "Index", "EstadoTicket")
-                    @Html.ActionLink("Tipo de Ticket", "Index", "TipoTicket")
+                    @Html.ActionLink("Estado de Ticket", "Index", "Estado_Ticket")
+                    @Html.ActionLink("Tipo de Ticket", "Index", "Tipo_Ticket")
                     @Html.ActionLink("Registro de Ticket", "Index", "Ticket")
+                    @Html.ActionLink("Atencion de Tickets", "Index", "TicketResolutor")
                 </div>
             </div>
             <div class="mynav_dropdown">

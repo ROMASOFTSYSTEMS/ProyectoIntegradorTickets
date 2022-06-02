@@ -3,10 +3,14 @@
     //ViewBag.Title = "UnauthorizedOption";
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 @*<h2>UnauthorizedOption</h2>*@
-<br/>
 <br />
 <br />
-<label>Error, no tienes permiso para esta opcion</label>
+<br />
+<label>Error, no tienes permiso para esta opcion: <font color="red">@ViewBag.opcion</font> </label>
+@*<dd class="col-md-1">
+    @ViewBag.opcion;
+</dd>*@

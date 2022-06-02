@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Listado de Tickets</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo Ticket", "Crear")
+    @*@Html.ActionLink("Crear Nuevo Ticket", "Crear")*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Crear", "Ticket")'">Crear Nuevo Ticket</button>
 </p>
 <table class="table">
     <tr>

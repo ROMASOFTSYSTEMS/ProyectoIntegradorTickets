@@ -40,7 +40,7 @@ namespace ProyectoIntegradorApi.DAL.Repositorios
                     con.Close();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     con.Close();
                     return false;

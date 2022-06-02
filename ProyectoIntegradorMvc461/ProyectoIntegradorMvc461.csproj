@@ -156,11 +156,15 @@
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\Estado_TicketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MensajesController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\TicketResolutorController.cs" />
+    <Compile Include="Controllers\Tipo_TicketController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\Usuario_EmpresaController.cs" />
     <Compile Include="Controllers\Usuario_PerfilController.cs" />
@@ -184,12 +188,14 @@
     <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\SistemaModel.cs" />
     <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Models\Tipo_Ticket.cs" />
     <Compile Include="Models\Tipo_TicketModel.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\Usuario_Empresa.cs" />
     <Compile Include="Models\Usuario_EmpresaModel.cs" />
+    <Compile Include="Models\Usuario_EmpresasModel.cs" />
     <Compile Include="Models\Usuario_Perfil.cs" />
     <Compile Include="Models\Usuario_PerfilesModel.cs" />
     <Compile Include="Models\Usuario_PerfilModel.cs" />
@@ -274,6 +280,17 @@
     <Content Include="Views\Usuario_Perfil\Index.cshtml" />
     <Content Include="Views\Usuario_Perfil\Crear.cshtml" />
     <Content Include="Views\Usuario_Perfil\Editar.cshtml" />
+    <Content Include="Views\Mensajes\Index.cshtml" />
+    <Content Include="Views\Estado_Ticket\Index.cshtml" />
+    <Content Include="Views\Estado_Ticket\Crear.cshtml" />
+    <Content Include="Views\Estado_Ticket\Editar.cshtml" />
+    <Content Include="Views\Estado_Ticket\Detalle.cshtml" />
+    <Content Include="Views\Tipo_Ticket\Index.cshtml" />
+    <Content Include="Views\Tipo_Ticket\Detalle.cshtml" />
+    <Content Include="Views\Tipo_Ticket\Crear.cshtml" />
+    <Content Include="Views\Tipo_Ticket\Editar.cshtml" />
+    <Content Include="Views\TicketResolutor\Editar.cshtml" />
+    <Content Include="Views\TicketResolutor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

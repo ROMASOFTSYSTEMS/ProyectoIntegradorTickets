@@ -14,3 +14,4 @@ namespace ProyectoIntegradorApi.Tickets
         Task<List<Usuario_Perfil>> GetUsuario_Perfil_Listado();
     }
 }
+

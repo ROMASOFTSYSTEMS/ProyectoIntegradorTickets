@@ -36,5 +36,55 @@ namespace ProyectoIntegradorMvc461.Models
                 else { return null; }
             }
         }
+        public async Task<Estado_Ticket> GetEstado_TicketByID(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String petition = "api/Estado_Ticket/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                HttpResponseMessage respuesta = await client.GetAsync(petition);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    Estado_Ticket c = await respuesta.Content.ReadAsAsync<Estado_Ticket>();
+                    return c;
+                }
+                else { return null; }
+            }
+        }
+        public async Task AddEstado_Ticket(Estado_Ticket c)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Estado_Ticket";
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.PostAsJsonAsync(peticion, c);
+            }
+        }
+        public async Task EditEstado_Ticket(Estado_Ticket c)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Estado_Ticket";
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.PutAsJsonAsync(peticion, c);
+            }
+        }
+        public async Task DeleteEstado_Ticket(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/Estado_Ticket/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                await client.DeleteAsync(peticion);
+            }
+        }
     }
 }

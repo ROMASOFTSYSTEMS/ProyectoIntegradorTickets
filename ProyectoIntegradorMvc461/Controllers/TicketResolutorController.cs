@@ -15,10 +15,11 @@ using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
-    public class TicketController : Controller
+    public class TicketResolutorController : Controller
     {
         public int pid_usuario { get; set; }
         public int pid_empresa { get; set; }
+        TicketModel modelTicket;
         EstadoModel modelEstado;
         EmpresaModel modelEmpresa;
         UsuarioModel modelUsuario;
@@ -34,12 +35,13 @@ namespace ProyectoIntegradorMvc461.Controllers
         private String UriApi;
         private readonly IConfiguration _configuration;
         MediaTypeWithQualityHeaderValue mediaheader;
-        public TicketController(IConfiguration configuration)
+        public TicketResolutorController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        public TicketController()
+        public TicketResolutorController()
         {
+            this.modelTicket = new TicketModel();
             this.modelEstado = new EstadoModel();
             this.modelEmpresa = new EmpresaModel();
             this.modelUsuario = new UsuarioModel();
@@ -57,27 +59,10 @@ namespace ProyectoIntegradorMvc461.Controllers
         //public async Task<IActionResult> Index()
         // GET: Sistemas
         [AsyncTimeout(1000)]
-        [AutorizaUsuario(IdOpcion: 13)]   // Filtro 
+        [AutorizaUsuario(IdOpcion: 14)]   // Filtro 
         public async Task<ActionResult> Index()
         {
             List<Ticket> TicketsAll = new List<Ticket>();
-            #region Anterior
-            //using (var client = new HttpClient())
-            //{
-            //    client.BaseAddress = new Uri(Url);
-            //    client.DefaultRequestHeaders.Clear();
-            //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            //    // LLamar a Todos los Tickets usando HttpClient
-            //    HttpResponseMessage Res = await client.GetAsync("Ticket/");
-            //    //if (Res.IsSuccessStatusCode)
-            //    //{
-            //    // Si Res=true entra y Asigna los datos
-            //    var _clientResponse = Res.Content.ReadAsStringAsync().Result;
-            //    //Deserializar el Api y Almacenar los datos
-            //    TicketsAll = JsonConvert.DeserializeObject<List<Ticket>>(_clientResponse);
-            //    //}
-            //}
-            #endregion
             using (HttpClient client = new HttpClient())
             {
                 String petition = "api/Ticket";
@@ -87,17 +72,123 @@ namespace ProyectoIntegradorMvc461.Controllers
                 HttpResponseMessage respuesta = await client.GetAsync(petition);
                 if (respuesta.IsSuccessStatusCode)
                 {
-                    //List<Empresa> cList = await respuesta.Content.ReadAsAsync<List<Empresa>>();
-                    //return cList;
                     var _clientResponse = respuesta.Content.ReadAsStringAsync().Result;
                     //Deserializar el Api y Almacenar los datos
                     TicketsAll = JsonConvert.DeserializeObject<List<Ticket>>(_clientResponse);
                 }
-                //else { return null; }
             }
-            //(IActionResult)
             return View(TicketsAll);  //(IActionResult)
         }
+
+        // GET: Contacts/Edit/5
+        public async Task<ActionResult> Editar(int id)
+        {
+            #region Combo Estado
+            List<Estado> LstEstado = await this.modelEstado.GetEstado();
+            List<SelectListItem> ItemsEstado = LstEstado.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado.ToString(),
+                    Value = d.id_estado.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Empresa
+            List<Empresa> LstEmpresa = await this.modelEmpresa.GetEmpresa();
+            List<SelectListItem> ItemsEmpresa = LstEmpresa.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_empresa.ToString(),
+                    Value = d.id_empresa.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Usuario
+            List<Usuario> LstUsuario = await this.modelUsuario.GetUsuario();
+            List<SelectListItem> ItemsUsuario = LstUsuario.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.c_usuario.ToString(),
+                    Value = d.id_usuario.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Sistema
+            List<Sistema> LstSistema = await this.modelSistema.GetSistema();
+            List<SelectListItem> ItemsSistema = LstSistema.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_sistema.ToString(),
+                    Value = d.id_sistema.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Modulo
+            List<Modulo> LstModulo = await this.modelModulo.GetModulo();
+            List<SelectListItem> ItemsModulo = LstModulo.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_modulo.ToString(),
+                    Value = d.id_modulo.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Tipo_Ticket
+            List<Tipo_Ticket> LstTipo_Ticket = await this.modelTipo_Ticket.GetTipo_Ticket();
+            List<SelectListItem> ItemsTipo_Ticket = LstTipo_Ticket.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_tipo_ticket.ToString(),
+                    Value = d.id_tipo_ticket.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+            #region Combo Estado_Ticket
+            List<Estado_Ticket> LstEstado_Ticket = await this.modelEstado_Ticket.GetEstado_Ticket();
+            List<SelectListItem> ItemsEstado_Ticket = LstEstado_Ticket.ConvertAll(d => {
+                return new SelectListItem()
+                {
+                    Text = d.t_estado_ticket.ToString(),
+                    Value = d.id_estado_ticket.ToString(),
+                    Selected = false
+                };
+            });
+            #endregion
+
+            Ticket ObjTicket = await this.modelTicket.GetTicketByID(id);
+            ViewBag.ItemsEstado = ItemsEstado;
+            ViewBag.ItemsEmpresa = ItemsEmpresa;
+            ViewBag.ItemsUsuario = ItemsUsuario;
+            ViewBag.ItemsSistema = ItemsSistema;
+            ViewBag.ItemsModulo = ItemsModulo;
+            ViewBag.ItemsTipo_Ticket = ItemsTipo_Ticket;
+            ViewBag.ItemsEstado_Ticket = ItemsEstado_Ticket;
+            //ObjTicket
+            //Usuario_Empresa c = await modelUsuario_Empresa.GetUsuario_EmpresaByID(id);
+            return View(ObjTicket);
+        }
+
+        // POST: Contacts/Edit/5
+        [HttpPost]
+        public async Task<ActionResult> Editar(Ticket c)
+        {
+            try
+            {
+                await modelTicket.EditTicket(c);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: Contacts/Create
         public async Task<ActionResult> Crear()
         {
@@ -216,7 +307,7 @@ namespace ProyectoIntegradorMvc461.Controllers
         public async Task<ActionResult> Crear(Ticket c)
         {
             //Aqui Se le reasigna los valores a c
-            
+
             c.id_usuario = Convert.ToInt32(Session["id_usuario"]);
             c.id_empresa = Convert.ToInt32(Session["id_empresa"]);
 

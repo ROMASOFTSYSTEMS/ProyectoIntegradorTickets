@@ -10,38 +10,36 @@ using ProyectoIntegradorMvc461.Filters;
 
 namespace ProyectoIntegradorMvc461.Controllers
 {
-    public class EmpresaController : Controller
+    public class Tipo_TicketController : Controller
     {
-        EmpresaModel model;
+        Tipo_TicketModel model;
         EstadoModel modelEstado;
-        public EmpresaController()
+        public Tipo_TicketController()
         {
-            this.model = new EmpresaModel();
+            this.model = new Tipo_TicketModel();
             this.modelEstado = new EstadoModel();
         }
 
-        // GET: Empresas
+        // GET: Tipo_Tickets
         [AsyncTimeout(1000)]
-        [AutorizaUsuario(IdOpcion:2)]   // Filtro 
+        [AutorizaUsuario(IdOpcion: 12)]   // Filtro 
         public async Task<ActionResult> Index()
         {
-            //ViewBag.TipoUsuario = Session["TipoUsuario"];
-            List<Empresa> cList = await model.GetEmpresa();
+            List<Tipo_Ticket> cList = await model.GetTipo_Ticket();
             return View(cList);
         }
 
-        // GET: Contacts/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Tipo_Ticket/Detalle/5
+        public async Task<ActionResult> Detalle(int id)
         {
-            Empresa c = await model.GetEmpresaByID(id);
+            Tipo_Ticket c = await model.GetTipo_TicketByID(id);
             return View(c);
         }
 
-        // GET: Contacts/Create
-        public async Task<ActionResult> Create()
+        // GET: Tipo_Ticket/Crear
+        public async Task<ActionResult> Crear()
         {
             List<Estado> cListEstado = await this.modelEstado.GetEstado();
-            //SelectListItem ObjSelectListItem = new SelectListItem();
             List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
                 return new SelectListItem()
                 {
@@ -51,19 +49,20 @@ namespace ProyectoIntegradorMvc461.Controllers
                 };
             });
             ViewBag.ItemsEstado = ItemsEstado;
-            Empresa ObjEntidadNew = new Empresa();
-            ObjEntidadNew.id_empresa = 0;
+            Tipo_Ticket ObjEntidadNew = new Tipo_Ticket();
+            ObjEntidadNew.id_tipo_ticket = 0;
             ObjEntidadNew.f_estado = 1;
             return View(ObjEntidadNew);
+            //return View();
         }
 
-        // POST: Contacts/Create
+        // POST: Tipo_Ticket/Crear
         [HttpPost]
-        public async Task<ActionResult> Create(Empresa c)
+        public async Task<ActionResult> Crear(Tipo_Ticket c)
         {
             try
             {
-                await model.AddEmpresa(c);
+                await model.AddTipo_Ticket(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -72,8 +71,8 @@ namespace ProyectoIntegradorMvc461.Controllers
             }
         }
 
-        // GET: Contacts/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        // GET: Tipo_Ticket/Editar/5
+        public async Task<ActionResult> Editar(int id)
         {
             // Para cargar Combo de Estado
             List<Estado> cListEstado = await this.modelEstado.GetEstado();
@@ -86,17 +85,17 @@ namespace ProyectoIntegradorMvc461.Controllers
                 };
             });
             ViewBag.ItemsEstado = ItemsEstado;
-            Empresa c = await model.GetEmpresaByID(id);
+            Tipo_Ticket c = await model.GetTipo_TicketByID(id);
             return View(c);
         }
 
-        // POST: Contacts/Edit/5
+        // POST: Tipo_Ticket/Editar/5
         [HttpPost]
-        public async Task<ActionResult> Edit(Empresa c)
+        public async Task<ActionResult> Editar(Tipo_Ticket c)
         {
             try
             {
-                await model.EditEmpresa(c);
+                await model.EditTipo_Ticket(c);
                 return RedirectToAction("Index");
             }
             catch
@@ -104,11 +103,10 @@ namespace ProyectoIntegradorMvc461.Controllers
                 return View();
             }
         }
-
-        // GET: Contacts/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        // GET: Tipo_Ticket/Eliminar/5
+        public async Task<ActionResult> Eliminar(int id)
         {
-            await model.DeleteEmpresa(id);
+            await model.DeleteTipo_Ticket(id);
             return RedirectToAction("Index");
         }
     }

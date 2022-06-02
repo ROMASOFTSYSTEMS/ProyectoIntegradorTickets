@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Estado_Ticket>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Estados de Ticket</h2>
+
+<p>
+    @*@Html.ActionLink("Crear Nuevo", "Crear")*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Crear", "Estado_Ticket")'">Crear Nuevo</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.id_estado_ticket)*@
+            <label class="control-label col-md-2">Id</label>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.t_estado_ticket)*@
+            <label class="control-label col-md-2">Descripcion</label>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.f_estado)*@
+            <label class="control-label col-md-2">Estado</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_estado_ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.t_estado_ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.f_estado)
+            </td>
+            <td>
+                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Estado_Ticket", new { id = item.id_estado_ticket})'">Editar</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Estado_Ticket", new { id = item.id_estado_ticket})'">Detalles</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Estado_Ticket", new { id = item.id_estado_ticket})'">Eliminar</button>
+
+            </td>
+        </tr>
+    }
+
+</table>

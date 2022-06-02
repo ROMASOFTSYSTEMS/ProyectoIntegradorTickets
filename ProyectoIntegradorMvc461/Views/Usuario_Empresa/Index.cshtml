@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Listado de Usuario/Empresa</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Crear")
+    @*@Html.ActionLink("Crear Nuevo", "Crear")*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Crear", "Usuario_Empresa")'">Crear Nuevo</button>
 </p>
 <table class="table">
     <tr>
@@ -58,7 +59,7 @@
             @Html.ActionLink("Details", "Detalle", new { id = item.id_modulo }) |
             @Html.ActionLink("Delete", "Eliminar", new { id = item.id_modulo })*@
         <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Editar</button>
-        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Detalles</button>
+        @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Detalles</button>*@
         <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario_Empresa", new { id = item.id_usuario_empresa})'">Eliminar</button>
 
     </td>

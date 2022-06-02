@@ -27,7 +27,7 @@ namespace ProyectoIntegradorMvc461.Filters
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             this.model = new Perfil_OpcionModel();
-
+            string nombreOpcion = "";
             //String nombreOpcion = "";
             //String nombreModulo = "";
             try
@@ -47,16 +47,19 @@ namespace ProyectoIntegradorMvc461.Filters
                         // Aqui debo Buscar la Opcion recibida
                         for (int i = 0; i < oLstOpciones.Count(); i++)
                         {
-                            if(oLstOpciones[i].id_opcion.Equals(this.IdOpcion) && oLstOpciones[i].f_estado.Equals(1))
+                            //if(oLstOpciones[i].id_opcion.Equals(this.IdOpcion) && oLstOpciones[i].f_estado.Equals(1))
+                            if (oLstOpciones[i].id_opcion.Equals(this.IdOpcion))
                             {
-                                this.lAcceso = true;
+                                this.lAcceso = oLstOpciones[i].f_estado.Equals(1);
+                                nombreOpcion = oLstOpciones[i].t_opcion.ToString();
                                 break;
                             }
                         }
                         if (!this.lAcceso)
                         {
                             //filterContext.Result = new RedirectResult("/Error/OpcionNoAutorizada?opcion=" + nombreOpcion);
-                            filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                            //filterContext.Result = new RedirectResult("/Error/UnauthorizedOption");
+                            filterContext.Result = new RedirectResult("/Error/UnauthorizedOption?opcion=" + nombreOpcion);
                         }
                     }
                 }

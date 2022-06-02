@@ -29,6 +29,7 @@ namespace ProyectoIntegradorMvc461.Models
         public int id_estado_ticket { get; set; }
         public string t_estado_ticket { get; set; }
         [Required(ErrorMessage = "Debe ingresar Observación")]
+        [DataType(DataType.MultilineText)]
         public string t_observacion { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado { get; set; }

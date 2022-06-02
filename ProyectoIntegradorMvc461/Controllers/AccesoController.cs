@@ -28,6 +28,8 @@ namespace ProyectoIntegradorMvc461.Controllers
         public ActionResult Login()
         {
             Session["User"] = null;
+            Session["TipoUsuario"] = "";
+            ViewBag.TipoUsuario = "";
             return View();
         }
 
@@ -49,15 +51,20 @@ namespace ProyectoIntegradorMvc461.Controllers
                 List<Usuario_Perfil> LstUsuarioPerfil = await modelUsuarioPerfiles.GetUsuario_Perfiles(Obj.id_usuario);
                 if (LstUsuarioPerfil.Count() < 1)
                 {
+                    Session["TipoUsuario"] = "Sin Perfil";
+                    ViewBag.TipoUsuario = "Sin Perfil";
                     ViewBag.Error = "Usuario no cuenta con un Perfil Definido";
                     return View();
                 }
                 id_perfil = LstUsuarioPerfil[0].id_perfil;
+                
                 List <Perfil_Opcion> LstPerfilOpcion = await modelPerfilOpcion.GetPerfil_Opciones(id_perfil);
                 Session["User"] = Obj;
                 Session["Opciones"] = LstPerfilOpcion;
                 Session["Perfil"] = LstUsuarioPerfil;
                 Session["id_usuario"] = Obj.id_usuario;
+                Session["TipoUsuario"] = LstUsuarioPerfil[0].t_perfil;
+                ViewBag.TipoUsuario = Session["TipoUsuario"];
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)

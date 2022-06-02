@@ -36,7 +36,6 @@ namespace ProyectoIntegradorMvc461.Models
             }
 
         }
-
         public async Task<Usuario_Perfil> GetUsuario_PerfilByID(int id)
         {
             using (HttpClient client = new HttpClient())

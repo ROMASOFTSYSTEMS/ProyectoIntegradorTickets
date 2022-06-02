@@ -1,0 +1,49 @@
+﻿@model ProyectoIntegradorMvc461.Models.Tipo_Ticket
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Tipo de Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.id_tipo_ticket)*@
+            <label class="control-label col-md-2">Id</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.id_tipo_ticket)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.t_tipo_ticket)*@
+            <label class="control-label col-md-2">Descripcion</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_tipo_ticket)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.f_estado)*@
+            <label class="control-label col-md-2">Estado</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Editar", "Editar", new { id = Model.id_tipo_ticket }) |
+        @Html.ActionLink("Regresar a la lista", "Index")*@
+
+    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Tipo_Ticket", new { id = Model.id_tipo_ticket })'">Editar</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Tipo_Ticket")'">Regresar a la Lista</button>
+
+</p>

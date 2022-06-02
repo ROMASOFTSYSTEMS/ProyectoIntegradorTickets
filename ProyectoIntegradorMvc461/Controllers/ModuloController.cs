@@ -40,7 +40,6 @@ namespace ProyectoIntegradorMvc461.Controllers
         public async Task<ActionResult> Crear()
         {
             List<Estado> cListEstado = await this.modelEstado.GetEstado();
-            //SelectListItem ObjSelectListItem = new SelectListItem();
             List<SelectListItem> ItemsEstado = cListEstado.ConvertAll(d => {
                 return new SelectListItem()
                 {
@@ -104,7 +103,6 @@ namespace ProyectoIntegradorMvc461.Controllers
                 return View();
             }
         }
-
         // GET: Modulo/Eliminar/5
         public async Task<ActionResult> Eliminar(int id)
         {

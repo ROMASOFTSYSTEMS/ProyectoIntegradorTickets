@@ -6,6 +6,7 @@ using System.Web;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ProyectoIntegradorMvc461.Models
 {
@@ -15,7 +16,8 @@ namespace ProyectoIntegradorMvc461.Models
         MediaTypeWithQualityHeaderValue mediaheader;
         public EmpresaModel()
         {
-            this.UriApi = "https://localhost:44396/"; // Local API
+            //this.UriApi = "https://localhost:44396/"; // Local API
+            this.UriApi = ConfigurationManager.AppSettings[("RutaAPI")]; // Local API
             this.mediaheader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
         }
 

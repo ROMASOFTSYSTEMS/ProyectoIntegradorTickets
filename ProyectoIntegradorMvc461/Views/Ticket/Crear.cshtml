@@ -13,6 +13,7 @@
 
 }
 
+
 <h2>Crear</h2>
 <head>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -20,206 +21,110 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Ticket</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Empresa</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_empresa, new SelectList(ItemsEmpresa, "Value", "Text"),
+                    "Select", new { @class = "form-control", @disabled = "disabled", onchange = "selected()", id = "cbo_empresa" })
+                    @Html.ValidationMessageFor(model => model.id_empresa, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_empresa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Usuario</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_usuario, new SelectList(ItemsUsuario, "Value", "Text"),
+                    "Select", new { @class = "form-control", @disabled = "disabled", onchange = "selected()", id = "cbo_usuario" })
+                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_usuario" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Sistema</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_sistema, new SelectList(ItemsSistema, "Value", "Text"),
+                    "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_sistema" })
+                    @Html.ValidationMessageFor(model => model.id_sistema, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_sistema" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Modulo</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_modulo, new SelectList(ItemsModulo, "Value", "Text"),
+                    "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_modulo" })
+                    @Html.ValidationMessageFor(model => model.id_modulo, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_modulo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Tipo de Ticket</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_tipo_ticket, new SelectList(ItemsTipo_Ticket, "Value", "Text"),
+                    "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_Tipo_Ticket" })
+                    @Html.ValidationMessageFor(model => model.id_modulo, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_Tipo_Ticket" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Estado de Ticket</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_estado_ticket, new SelectList(ItemsEstado_Ticket, "Value", "Text"),
+                    "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_Estado_Ticket" })
+                    @Html.ValidationMessageFor(model => model.id_estado_ticket, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_Estado_Ticket" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.t_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.t_observacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.t_observacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">Estado</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.f_estado, new SelectList(Items, "Value", "Text"),
+                    "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_estado" })
+                    @Html.ValidationMessageFor(model => model.f_estado, "", new { @class = "text-danger" })
+                    <span asp-validation-for="cbo_estado" class="text-danger"></span>
+                </div>
+            </div>
 
-<div class="form-horizontal">
-    <h4>Ticket</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_empresa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_empresa, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_empresa, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Empresa</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_empresa, new SelectList(ItemsEmpresa, "Value", "Text"),
-            "Select", new { @class = "form-control", @disabled = "disabled", onchange = "selected()", id = "cbo_empresa" })
-            @Html.ValidationMessageFor(model => model.id_empresa, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_empresa" class="text-danger"></span>
-        </div>
-    </div>
-    @*Html.DropDownList("Types", Model.Types, new { @disabled = "disabled" })*@
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.t_empresa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.t_empresa, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.t_empresa, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_usuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Usuario</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_usuario, new SelectList(ItemsUsuario, "Value", "Text"),
-            "Select", new { @class = "form-control", @disabled = "disabled", onchange = "selected()", id = "cbo_usuario" })
-            @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_usuario" class="text-danger"></span>
-        </div>
-    </div>
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.c_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.c_usuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.c_usuario, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_sistema, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_sistema, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_sistema, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.t_sistema, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.t_sistema, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.t_sistema, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Sistema</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_sistema, new SelectList(ItemsSistema, "Value", "Text"),
-            "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_sistema" })
-            @Html.ValidationMessageFor(model => model.id_sistema, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_sistema" class="text-danger"></span>
-        </div>
-    </div>
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_modulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_modulo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_modulo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.t_modulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.t_modulo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.t_modulo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Modulo</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_modulo, new SelectList(ItemsModulo, "Value", "Text"),
-            "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_modulo" })
-            @Html.ValidationMessageFor(model => model.id_modulo, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_modulo" class="text-danger"></span>
-        </div>
-    </div>
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_tipo_ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_tipo_ticket, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_tipo_ticket, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.t_tipo_ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.t_tipo_ticket, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.t_tipo_ticket, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Tipo de Ticket</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_tipo_ticket, new SelectList(ItemsTipo_Ticket, "Value", "Text"),
-            "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_Tipo_Ticket" })
-            @Html.ValidationMessageFor(model => model.id_modulo, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_Tipo_Ticket" class="text-danger"></span>
-        </div>
-    </div>
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.id_estado_ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_estado_ticket, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_estado_ticket, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.t_estado_ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.t_estado_ticket, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.t_estado_ticket, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Estado de Ticket</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_estado_ticket, new SelectList(ItemsEstado_Ticket, "Value", "Text"),
-            "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_Estado_Ticket" })
-            @Html.ValidationMessageFor(model => model.id_estado_ticket, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_Estado_Ticket" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.t_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.t_observacion, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.t_observacion, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.f_estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.f_estado, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label class="control-label col-md-2">Estado</label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.f_estado, new SelectList(Items, "Value", "Text"),
-            "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_estado" })
-            @Html.ValidationMessageFor(model => model.f_estado, "", new { @class = "text-danger" })
-            <span asp-validation-for="cbo_estado" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-}
-
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+</div>*@
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Regresar a la Lista", "Index")*@
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Ticket")'">Regresar a la Lista</button>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

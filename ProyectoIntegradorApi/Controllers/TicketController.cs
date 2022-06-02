@@ -139,23 +139,6 @@ namespace ProyectoIntegradorApi.Controllers
             }
         }
 
-        // POST: api/ticket
-        //[HttpPost]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public async Task<bool> Post(DAL.Models.Ticket ticket)
-        //{
-        //    try
-        //    {
-        //        bool result = await _TicketRepositorio.Grabar(ticket);
-        //        return result;
-        //    }
-        //    catch (System.Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] DAL.Models.Ticket entidad)
         {
@@ -170,10 +153,28 @@ namespace ProyectoIntegradorApi.Controllers
             bool result = await _TicketRepositorio.Grabar(entidad);
             //await _DataBase.AddAsync(entidad);
             //await _DataBase.SaveChangesAsync();
-            return Ok("Modulo creado");
+            return Ok("Ticket creado");
         }
 
-
+        #region PUT ACTUALIZA REGISTRO - MODIFICA UN REGISTRO ESPECIFICO
+        // PUT: api/Perfil
+        [HttpPut()]     // "{id:int}"
+        public async Task<IActionResult> Put([FromBody] DAL.Models.Ticket entidad)
+        {
+            if (entidad == null)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            bool result = await _TicketRepositorio.Grabar(entidad);
+            //await _DataBase.AddAsync(entidad);
+            //await _DataBase.SaveChangesAsync();
+            return Ok("Ticket Actualizado");
+        }
+        #endregion
         // DELETE: api/ticket/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
