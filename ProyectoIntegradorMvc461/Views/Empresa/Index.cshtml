@@ -4,50 +4,50 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script>
+    function confirmar() {
+        if (confirm("Quieres eliminar el registro?")) {
+            document.getElementById("del".value="SI")
+        } else {
+            document.getElementById("del".value = "NO")
+        }
+    }
+</script>
 <h2>Listado de Empresas</h2>
-
 <p>
-    @*@Html.ActionLink("Crear Nuevo", "Create")*@
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Empresa")'">Crear Nuevo</button>
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Empresa")'">Crear Nuevo</button>
 </p>
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.id_empresa)*@
             Id
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.t_empresa)*@
             Descripcion
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.f_estado)*@
             Estado
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_empresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.t_empresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_estado)
-        </td>
-        <td>
-            @*@Html.ActionLink("Editar", "Edit", new { id = item.id_empresa }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.id_empresa }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.id_empresa })|*@
-            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Empresa", new { id = item.id_empresa })'">Editar</button>
-            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "Empresa", new { id = item.id_empresa })'">Detalles</button>
-            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Empresa", new { id = item.id_empresa })'">Eliminar</button>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.t_empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.f_estado)
+            </td>
+            <td>
+                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Empresa", new { id = item.id_empresa })'">Editar</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "Empresa", new { id = item.id_empresa })'">Detalles</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Empresa", new { id = item.id_empresa })'">Eliminar</button>
+            </td>
+        </tr>
+    }
 
 </table>

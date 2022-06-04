@@ -31,6 +31,8 @@ namespace ProyectoIntegradorMvc461.Models
         [Required(ErrorMessage = "Debe ingresar Observación")]
         [DataType(DataType.MultilineText)]
         public string t_observacion { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string t_informe_solucion { get; set; }
         [Required(ErrorMessage = "Debe seleccionar Estado")]
         public int f_estado { get; set; }
     }

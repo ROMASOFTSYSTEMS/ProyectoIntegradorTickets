@@ -7,7 +7,7 @@ using ProyectoIntegradorApi.Models;
 //Usings
 using ProyectoIntegradorApi.Tickets;
 
-namespace ProyectoIntegradorApi.DAL.Repositorios
+namespace ProyectoIntegradorApi.Repositorios
 {
     public class Usuario_PerfilDAL : IUsuario_PerfilRepositorio
     {

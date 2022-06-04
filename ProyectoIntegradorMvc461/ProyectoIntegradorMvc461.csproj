@@ -211,7 +211,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\fondop.jpg" />
     <Content Include="Images\fondo.jpg" />
+    <Content Include="Images\fondop2.jpg" />
     <Content Include="Info.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

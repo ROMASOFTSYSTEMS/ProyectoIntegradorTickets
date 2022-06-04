@@ -18,6 +18,10 @@
         </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.t_empresa)*@
+            Id.Ticket
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.t_empresa)*@
             Empresa
         </th>
         @*<th>
@@ -59,6 +63,10 @@
             @*@Html.DisplayNameFor(model => model.t_observacion)*@
             Observacion
         </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.t_observacion)*@
+            Informe de Solucion
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.f_estado)
         </th>*@
@@ -70,6 +78,9 @@
     @*<td>
             @Html.DisplayFor(modelItem => item.id_empresa)
         </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.id_ticket)
+    </td>
     <td>
         @Html.DisplayFor(modelItem => item.t_empresa)
     </td>
@@ -98,26 +109,30 @@
         @Html.DisplayFor(modelItem => item.t_tipo_ticket)
     </td>
     @*<td>
-        @Html.DisplayFor(modelItem => item.id_estado_ticket)
-    </td>*@
+            @Html.DisplayFor(modelItem => item.id_estado_ticket)
+        </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.t_estado_ticket)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.t_observacion)
     </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.f_estado)
-    </td>*@
-<td>
-    @*@Html.ActionLink("Edit", "Edit", new { id = item.id_ticket }) |
-        @Html.ActionLink("Details", "Details", new { id = item.id_ticket }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.id_ticket })*@
-    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Usuario", new { id = item.id_ticket})'">Editar</button>
-    @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario", new { id = item.id_ticket})'">Detalles</button>*@
-    @*<button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario", new { id = item.id_ticket})'">Eliminar</button>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.t_informe_solucion)
+    </td>
 
-</td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.f_estado)
+        </td>*@
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.id_ticket }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id_ticket }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id_ticket })*@
+        <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "Usuario", new { id = item.id_ticket})'">Editar</button>
+        @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario", new { id = item.id_ticket})'">Detalles</button>*@
+        @*<button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario", new { id = item.id_ticket})'">Eliminar</button>*@
+
+    </td>
 </tr>
 }
 

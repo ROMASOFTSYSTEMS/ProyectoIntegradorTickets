@@ -12,44 +12,45 @@
 </p>
 <table class="table">
     <tr>
-        @*<th>
-                @Html.DisplayNameFor(model => model.id_empresa)
-            </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.id_empresa)*@
+            Id.Ticket
+        </th>
         <th>
             @*@Html.DisplayNameFor(model => model.t_empresa)*@
             Empresa
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.id_usuario)
-            </th>*@
+            @Html.DisplayNameFor(model => model.id_usuario)
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.c_usuario)*@
             Usuario
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.id_sistema)
-            </th>*@
+            @Html.DisplayNameFor(model => model.id_sistema)
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.t_sistema)*@
             Sistema
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.id_modulo)
-            </th>*@
+            @Html.DisplayNameFor(model => model.id_modulo)
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.t_modulo)*@
             Modulo
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.id_tipo_ticket)
-            </th>*@
+            @Html.DisplayNameFor(model => model.id_tipo_ticket)
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.t_tipo_ticket)*@
             Tipo de Ticket
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.id_estado_ticket)
-            </th>*@
+            @Html.DisplayNameFor(model => model.id_estado_ticket)
+        </th>*@
         <th>
             @*@Html.DisplayNameFor(model => model.t_estado_ticket)*@
             Estado de Ticket
@@ -58,64 +59,76 @@
             @*@Html.DisplayNameFor(model => model.t_observacion)*@
             Observacion
         </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.t_observacion)*@
+            Informe de Solución
+        </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.f_estado)
-            </th>*@
+            @Html.DisplayNameFor(model => model.f_estado)
+        </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.id_empresa)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.t_empresa)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.id_usuario)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.c_usuario)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.id_sistema)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.t_sistema)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.id_modulo)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.t_modulo)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.id_tipo_ticket)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.t_tipo_ticket)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.id_estado_ticket)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.t_estado_ticket)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.t_observacion)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.f_estado)
-                </td>*@
-            <td>
-                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Editar", "TicketResolutor", new { id = item.id_ticket})'">Editar</button>
-                @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario", new { id = item.id_ticket})'">Detalles</button>*@
-                @*<button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario", new { id = item.id_ticket})'">Eliminar</button>*@
+<tr>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.id_empresa)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.id_ticket)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.t_empresa)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.id_usuario)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.c_usuario)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.id_sistema)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.t_sistema)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.id_modulo)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.t_modulo)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.id_tipo_ticket)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.t_tipo_ticket)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.id_estado_ticket)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.t_estado_ticket)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.t_observacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.t_informe_solucion)
+    </td>
 
-            </td>
-        </tr>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.f_estado)
+        </td>*@
+    <td>
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Editar", "TicketResolutor", new { id = item.id_ticket})'">Atender Ticket</button>
+
+        @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Detalle", "Usuario", new { id = item.id_ticket})'">Detalles</button>*@
+        @*<button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuario", new { id = item.id_ticket})'">Eliminar</button>*@
+
+    </td>
+</tr>
     }
 
 </table>

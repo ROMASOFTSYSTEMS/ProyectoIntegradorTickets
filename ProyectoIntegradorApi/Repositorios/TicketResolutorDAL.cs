@@ -46,7 +46,7 @@ namespace ProyectoIntegradorApi.Repositorios
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_ticket", entity.id_ticket);
                 cmd.Parameters.AddWithValue("@id_estado_ticket", entity.id_estado_ticket);
-                cmd.Parameters.AddWithValue("@t_observacion", entity.t_observacion);
+                cmd.Parameters.AddWithValue("@t_informe_solucion", entity.t_informe_solucion);
                 cmd.Parameters.AddWithValue("@f_estado", entity.f_estado);
                 try
                 {

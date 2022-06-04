@@ -97,9 +97,18 @@
         <div class="col-md-10">
             @*col-md-10*@
             @*@Html.EditorFor(model => model.t_observacion, new { htmlAttributes = new { @class = "form-control", rows = "20" } })*@
-            @Html.EditorFor(model => model.t_observacion, new { htmlAttributes = new { @class = "form-control", rows = "7" } })
+            @Html.EditorFor(model => model.t_observacion, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", rows = "7" } })
 
             @Html.ValidationMessageFor(model => model.t_observacion, "", new { @class = "text-danger" })
+            @*<textarea class="span6" rows="3" placeholder="What's up?" required></textarea>*@
+        </div>
+    </div>
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.t_observacion, htmlAttributes: new { @class = "control-label col-md-2", @disabled = "disabled"})*@
+        <label class="control-label col-md-2">Informe de Solucion</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.t_informe_solucion, new { htmlAttributes = new { @class = "form-control", rows = "7" } })
+            @Html.ValidationMessageFor(model => model.t_informe_solucion, "", new { @class = "text-danger" })
             @*<textarea class="span6" rows="3" placeholder="What's up?" required></textarea>*@
         </div>
     </div>

@@ -20,7 +20,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Usuario_Perfil</h4>
+        <h4>Usuario/Perfil</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
             @*@Html.LabelFor(model => model.f_estado, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <label class="control-label col-md-2">Usuario</label>
+            <label class="control-label col-md-2">Perfil</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.id_perfil, new SelectList(ItemsPerfil, "Value", "Text"),
                 "Select", new { @class = "form-control", onchange = "selected()", id = "cbo_perfil" })

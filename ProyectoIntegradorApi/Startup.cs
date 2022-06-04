@@ -14,8 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProyectoIntegradorApi.Data;
 // Usings Nuevos
-using ProyectoIntegradorApi.DAL.Tickets;
-using ProyectoIntegradorApi.DAL.Repositorios;
+//using ProyectoIntegradorApi.DAL.Tickets;
+//using ProyectoIntegradorApi.DAL.Repositorios;
 
 using ProyectoIntegradorApi.Tickets;
 using ProyectoIntegradorApi.Repositorios;
