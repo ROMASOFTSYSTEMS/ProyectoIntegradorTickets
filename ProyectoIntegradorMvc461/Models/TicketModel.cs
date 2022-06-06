@@ -70,6 +70,40 @@ namespace ProyectoIntegradorMvc461.Models
                 else { return null; }
             }
         }
+        public async Task<List<Ticket>> GetTicketPorSistema(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String petition = "api/TicketsPorSistema/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                HttpResponseMessage respuesta = await client.GetAsync(petition);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    List<Ticket> cList = await respuesta.Content.ReadAsAsync<List<Ticket>>();
+                    return cList;
+                }
+                else { return null; }
+            }
+        }
+        public async Task<List<Ticket>> GetTicketPorModulo(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String petition = "api/TicketsPorModulo/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                HttpResponseMessage respuesta = await client.GetAsync(petition);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    List<Ticket> cList = await respuesta.Content.ReadAsAsync<List<Ticket>>();
+                    return cList;
+                }
+                else { return null; }
+            }
+        }
         public async Task<List<Ticket>> GetTickets()
         {
             using (HttpClient client = new HttpClient())

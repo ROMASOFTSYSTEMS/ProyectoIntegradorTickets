@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ProyectoIntegradorMvc461.Models.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> ItemsModulo = (List<SelectListItem>)ViewBag.ItemsModulo;
+}
+
+<h2>Tickets por Modulo</h2>
+
+@using (Html.BeginForm("Index", "TicketsPorModulo", FormMethod.Post))
+{
+    <div>
+        @Html.DropDownList("cboModulo", ItemsModulo, "Seleccionar", new { @class = "form-control" })
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </div>
+}
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Id.Ticket
+            </th>
+            <th>
+                Empresa
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Sistema
+            </th>
+            <th>
+                Modulo
+            </th>
+            <th>
+                Tipo de Ticket
+            </th>
+            <th>
+                Estado de Ticket
+            </th>
+            <th>
+                Observacion
+            </th>
+            <th>
+                Informe de Solución
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_ticket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.c_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_sistema)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_modulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_tipo_ticket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_estado_ticket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_observacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.t_informe_solucion)
+                </td>
+                <td>
+                    @*<button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Editar", "TicketResolutor", new { id = item.id_ticket})'">Atender Ticket</button>*@
+                </td>
+            </tr>
+        }
+
+    </table>
+}

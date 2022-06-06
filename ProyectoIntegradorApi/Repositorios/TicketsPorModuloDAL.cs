@@ -9,11 +9,11 @@ using ProyectoIntegradorApi.Tickets;
 
 namespace ProyectoIntegradorApi.Repositorios
 {
-    public class TicketsPorEmpresaDAL: ITicketsPorEmpresaRepositorio
+    public class TicketsPorModuloDAL : ITicketsPorModuloRepositorio
     {
         private readonly string _CadenaConexion;
         // Constructor
-        public TicketsPorEmpresaDAL(string pCadenaConexion)
+        public TicketsPorModuloDAL(string pCadenaConexion)
         {
             _CadenaConexion = pCadenaConexion;
         }
@@ -23,7 +23,7 @@ namespace ProyectoIntegradorApi.Repositorios
             throw new NotImplementedException();
         }
 
-        public async Task<List<Ticket>> GetListadoTicketsPorEmpresa(int id)
+        public async Task<List<Ticket>> GetListadoTicketsPorModulo(int id)
         {
             List<Ticket> Listado = new List<Ticket>();
 
@@ -32,7 +32,10 @@ namespace ProyectoIntegradorApi.Repositorios
                 SqlCommand cmd = new SqlCommand("USP_Ticket_Consulta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_ticket", null);
-                cmd.Parameters.AddWithValue("@id_empresa", id);
+                cmd.Parameters.AddWithValue("@id_empresa", null);
+                cmd.Parameters.AddWithValue("@id_usuario", null);
+                cmd.Parameters.AddWithValue("@id_sistema", null);
+                cmd.Parameters.AddWithValue("@id_modulo", id);
                 try
                 {
                     await con.OpenAsync();

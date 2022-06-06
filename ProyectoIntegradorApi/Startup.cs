@@ -44,6 +44,8 @@ namespace ProyectoIntegradorApi
             services.AddSingleton<IUsuario_PerfilRepositorio>(new Usuario_PerfilDAL(Configuration.GetConnectionString("CadenaSQL")));
             // Consultas
             services.AddSingleton<ITicketsPorEmpresaRepositorio>(new TicketsPorEmpresaDAL(Configuration.GetConnectionString("CadenaSQL")));
+            services.AddSingleton<ITicketsPorSistemaRepositorio>(new TicketsPorSistemaDAL(Configuration.GetConnectionString("CadenaSQL")));
+            services.AddSingleton<ITicketsPorModuloRepositorio>(new TicketsPorModuloDAL(Configuration.GetConnectionString("CadenaSQL")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
