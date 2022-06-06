@@ -130,6 +130,15 @@
                 </div>
             </div>
             <div class="mynav_dropdown">
+                <button class="mynav_dropbtn">Estadisticas<i class="fa fa-caret-down"></i></button>
+                <div class="mynav_dropdown-content">
+                    @Html.ActionLink("Tickets por Empresa", "Index", "TicketsPorEmpresa")
+                    @*@Html.ActionLink("Tipo de Ticket", "Index", "Tipo_Ticket")
+                    @Html.ActionLink("Registro de Ticket", "Index", "Ticket")
+                    @Html.ActionLink("Atencion de Tickets", "Index", "TicketResolutor")*@
+                </div>
+            </div>
+            <div class="mynav_dropdown">
                 <button class="mynav_dropbtn">Acerca De<i class="fa fa-caret-down"></i></button>
                 <div class="mynav_dropdown-content">
                     @Html.ActionLink("Acerca de", "About", "Home")
@@ -137,11 +146,10 @@
                 </div>
             </div>
             @Html.ActionLink("Cerrar Sesion", "Login", "Acceso")
-        <!--<div class="mynav_dropdown">-->
+            <!--<div class="mynav_dropdown">-->
             @*<label><font color="white">Usuario</font> </label>*@
             <!--<button class="mynav_dropbtn">Usuario<i class="fa fa-caret-down"></i></button>
-        </div>-->
-
+    </div>-->
             <!--<div class="mynav_dropdown">
     <button class="mynav_dropbtn">
         MenuX-->

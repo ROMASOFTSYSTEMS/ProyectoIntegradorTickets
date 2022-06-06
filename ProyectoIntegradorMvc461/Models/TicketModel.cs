@@ -53,6 +53,40 @@ namespace ProyectoIntegradorMvc461.Models
                 else { return null; }
             }
         }
+        public async Task<List<Ticket>> GetTicketPorEmpresa(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String petition = "api/TicketsPorEmpresa/" + id;
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                HttpResponseMessage respuesta = await client.GetAsync(petition);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    List<Ticket> cList = await respuesta.Content.ReadAsAsync<List<Ticket>>();
+                    return cList;
+                }
+                else { return null; }
+            }
+        }
+        public async Task<List<Ticket>> GetTickets()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String petition = "api/Tickets/";
+                client.BaseAddress = new Uri(this.UriApi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(mediaheader);
+                HttpResponseMessage respuesta = await client.GetAsync(petition);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    List<Ticket> cList = await respuesta.Content.ReadAsAsync<List<Ticket>>();
+                    return cList;
+                }
+                else { return null; }
+            }
+        }
         public async Task AddTicket(Ticket c)
         {
             using (HttpClient client = new HttpClient())

@@ -164,6 +164,7 @@
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\TicketResolutorController.cs" />
+    <Compile Include="Controllers\TicketsPorEmpresaController.cs" />
     <Compile Include="Controllers\Tipo_TicketController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\Usuario_EmpresaController.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Views\Tipo_Ticket\Editar.cshtml" />
     <Content Include="Views\TicketResolutor\Editar.cshtml" />
     <Content Include="Views\TicketResolutor\Index.cshtml" />
+    <Content Include="Views\TicketsPorEmpresa\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
